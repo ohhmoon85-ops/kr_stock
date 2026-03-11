@@ -3,6 +3,8 @@ OpenAI GPT-4o 기반 주식 분석 리포트 생성 모듈
 """
 
 import os
+import re
+import json
 import logging
 from openai import OpenAI
 
@@ -124,3 +126,41 @@ def generate_report(market_data: dict) -> str:
     report = response.choices[0].message.content
     logger.info(f"리포트 생성 완료 (토큰 사용: {response.usage.total_tokens})")
     return report
+
+
+def extract_picks(report: str) -> list:
+    """
+    GPT-4o-mini를 사용해 리포트에서 추천 종목을 구조화된 JSON으로 추출.
+    저장 비용 최소화를 위해 저렴한 모델 사용.
+    """
+    api_key = os.environ.get("OPENAI_API_KEY")
+    if not api_key:
+        return []
+
+    try:
+        client = OpenAI(api_key=api_key)
+        resp = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {
+                    "role": "system",
+                    "content": (
+                        "주식 분석 리포트에서 추천 종목 정보를 추출해 JSON으로 반환하세요.\n"
+                        '형식: {"picks": [{"name":"종목명","ticker":"티커","entry_price":숫자,'
+                        '"target_price":숫자,"stop_price":숫자}]}\n'
+                        "가격은 쉼표 없는 순수 정수. 티커 예: 005930.KS"
+                    ),
+                },
+                {"role": "user", "content": report},
+            ],
+            response_format={"type": "json_object"},
+            max_tokens=600,
+            temperature=0,
+        )
+        data = json.loads(resp.choices[0].message.content)
+        picks = data.get("picks", data.get("stocks", []))
+        logger.info(f"추천 종목 추출 완료: {len(picks)}개")
+        return picks
+    except Exception as e:
+        logger.warning(f"추천 종목 추출 실패 (저장 건너뜀): {e}")
+        return []
