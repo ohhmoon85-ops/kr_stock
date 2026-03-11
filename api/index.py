@@ -1,39 +1,45 @@
 """
 매일 아침 08:00 KST 한국 주식 전망 자동화 시스템
-Vercel Serverless Function (FastAPI)
+Vercel Serverless Function (Flask)
 """
 
-from fastapi import FastAPI, Request, HTTPException
-from fastapi.responses import JSONResponse
 import os
 import sys
 import logging
 
+# api 디렉터리를 모듈 검색 경로에 추가
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from data_collector import collect_market_data
-from analyzer import generate_report
-from telegram_sender import send_telegram_message
+from flask import Flask, jsonify, request
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-app = FastAPI()
+app = Flask(__name__)
 
 
-@app.get("/api")
-@app.post("/api")
-async def handler(request: Request):
+@app.route("/api/health", methods=["GET"])
+def health_check():
+    """헬스 체크 엔드포인트"""
+    return jsonify({"status": "ok", "service": "Korean Stock Analyzer"})
+
+
+@app.route("/api", methods=["GET", "POST"])
+def handler():
     """Vercel Cron Job 엔드포인트 - 매일 UTC 23:00 (KST 08:00) 실행"""
-    # Cron Job 인증 (Vercel이 자동으로 추가하는 헤더)
+    # Cron Job 인증
     auth_header = request.headers.get("authorization", "")
     cron_secret = os.environ.get("CRON_SECRET", "")
-
     if cron_secret and auth_header != f"Bearer {cron_secret}":
-        raise HTTPException(status_code=401, detail="Unauthorized")
+        return jsonify({"error": "Unauthorized"}), 401
 
     try:
         logger.info("=== 한국 주식 분석 시작 ===")
+
+        # 지연 임포트 (콜드 스타트 최적화)
+        from data_collector import collect_market_data
+        from analyzer import generate_report
+        from telegram_sender import send_telegram_message
 
         # 1. 시장 데이터 수집
         logger.info("시장 데이터 수집 중...")
@@ -48,19 +54,13 @@ async def handler(request: Request):
         send_telegram_message(report)
 
         logger.info("=== 분석 완료 및 전송 성공 ===")
-        return JSONResponse({"status": "success", "message": "리포트 전송 완료"})
+        return jsonify({"status": "success", "message": "리포트 전송 완료"})
 
     except Exception as e:
         logger.error(f"오류 발생: {e}", exc_info=True)
-        # 오류도 텔레그램으로 알림
         try:
+            from telegram_sender import send_telegram_message
             send_telegram_message(f"⚠️ *시스템 오류 발생*\n```\n{str(e)}\n```")
         except Exception:
             pass
-        raise HTTPException(status_code=500, detail=str(e))
-
-
-@app.get("/api/health")
-async def health_check():
-    """헬스 체크 엔드포인트"""
-    return {"status": "ok", "service": "Korean Stock Analyzer"}
+        return jsonify({"error": str(e)}), 500
