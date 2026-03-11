@@ -1,66 +1,78 @@
-"""
-매일 아침 08:00 KST 한국 주식 전망 자동화 시스템
-Vercel Serverless Function (Flask)
-"""
-
 import os
 import sys
+import json
 import logging
+from http.server import BaseHTTPRequestHandler
 
-# api 디렉터리를 모듈 검색 경로에 추가
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-
-from flask import Flask, jsonify, request
-
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-app = Flask(__name__)
 
+class handler(BaseHTTPRequestHandler):
 
-@app.route("/api/health", methods=["GET"])
-def health_check():
-    """헬스 체크 엔드포인트"""
-    return jsonify({"status": "ok", "service": "Korean Stock Analyzer"})
+    def do_GET(self):
+        path = self.path.split("?")[0]
 
+        if path == "/api/health":
+            self._respond(200, {"status": "ok", "service": "Korean Stock Analyzer"})
 
-@app.route("/api", methods=["GET", "POST"])
-def handler():
-    """Vercel Cron Job 엔드포인트 - 매일 UTC 23:00 (KST 08:00) 실행"""
-    # Cron Job 인증
-    auth_header = request.headers.get("authorization", "")
-    cron_secret = os.environ.get("CRON_SECRET", "")
-    if cron_secret and auth_header != f"Bearer {cron_secret}":
-        return jsonify({"error": "Unauthorized"}), 401
+        elif path == "/api":
+            self._run_analysis()
 
-    try:
-        logger.info("=== 한국 주식 분석 시작 ===")
+        else:
+            self._respond(404, {"error": "Not found"})
 
-        # 지연 임포트 (콜드 스타트 최적화)
-        from data_collector import collect_market_data
-        from analyzer import generate_report
-        from telegram_sender import send_telegram_message
+    def do_POST(self):
+        path = self.path.split("?")[0]
+        if path == "/api":
+            self._run_analysis()
+        else:
+            self._respond(404, {"error": "Not found"})
 
-        # 1. 시장 데이터 수집
-        logger.info("시장 데이터 수집 중...")
-        market_data = collect_market_data()
+    def _run_analysis(self):
+        # Cron 인증
+        auth_header = self.headers.get("authorization", "")
+        cron_secret = os.environ.get("CRON_SECRET", "")
+        if cron_secret and auth_header != f"Bearer {cron_secret}":
+            self._respond(401, {"error": "Unauthorized"})
+            return
 
-        # 2. AI 분석 리포트 생성
-        logger.info("AI 분석 리포트 생성 중...")
-        report = generate_report(market_data)
-
-        # 3. 텔레그램 전송
-        logger.info("텔레그램 전송 중...")
-        send_telegram_message(report)
-
-        logger.info("=== 분석 완료 및 전송 성공 ===")
-        return jsonify({"status": "success", "message": "리포트 전송 완료"})
-
-    except Exception as e:
-        logger.error(f"오류 발생: {e}", exc_info=True)
         try:
+            logger.info("=== 한국 주식 분석 시작 ===")
+
+            from data_collector import collect_market_data
+            from analyzer import generate_report
             from telegram_sender import send_telegram_message
-            send_telegram_message(f"⚠️ *시스템 오류 발생*\n```\n{str(e)}\n```")
-        except Exception:
-            pass
-        return jsonify({"error": str(e)}), 500
+
+            logger.info("시장 데이터 수집 중...")
+            market_data = collect_market_data()
+
+            logger.info("AI 리포트 생성 중...")
+            report = generate_report(market_data)
+
+            logger.info("텔레그램 전송 중...")
+            send_telegram_message(report)
+
+            logger.info("=== 완료 ===")
+            self._respond(200, {"status": "success", "message": "리포트 전송 완료"})
+
+        except Exception as e:
+            logger.error(f"오류: {e}", exc_info=True)
+            try:
+                from telegram_sender import send_telegram_message
+                send_telegram_message(f"⚠️ *오류 발생*\n`{str(e)}`")
+            except Exception:
+                pass
+            self._respond(500, {"error": str(e)})
+
+    def _respond(self, status: int, body: dict):
+        payload = json.dumps(body, ensure_ascii=False).encode("utf-8")
+        self.send_response(status)
+        self.send_header("Content-Type", "application/json; charset=utf-8")
+        self.send_header("Content-Length", str(len(payload)))
+        self.end_headers()
+        self.wfile.write(payload)
+
+    def log_message(self, fmt, *args):
+        logger.info(fmt % args)
