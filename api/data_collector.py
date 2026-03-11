@@ -222,11 +222,8 @@ def collect_kr_stocks() -> dict:
         if info:
             raw[name] = {**info, "ticker": ticker}
 
-    # 2단계: 시가총액 필터
-    filtered = {
-        n: v for n, v in raw.items()
-        if v.get("market_cap") is None or v["market_cap"] >= MIN_MARKET_CAP
-    }
+    # 2단계: 시가총액 필터 없음 (전 종목 포함)
+    filtered = raw
 
     # 3단계: 모멘텀 점수 정렬 → 상위 15개
     def score(item):
@@ -271,7 +268,7 @@ def format_market_data_for_prompt(market_data: dict) -> str:
         lines.append(f"- {name}: {info['close']:,.2f} ({sign}{info['change_pct']:.2f}%)")
 
     # 한국 종목 (기술적 지표 + 펀더멘털)
-    lines.append("\n### 한국 주요 종목 (시가총액 1조+ | RSI·MACD·PER·PBR 포함)")
+    lines.append("\n### 한국 주요 종목 (RSI·MACD·PER·PBR 포함)")
     lines.append("종목명 | 종가 | 등락률 | RSI | MACD히스토 | PER | PBR | 시가총액(조)")
     lines.append("---|---|---|---|---|---|---|---")
     for name, info in market_data.get("kr_stocks", {}).items():
