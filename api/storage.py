@@ -57,7 +57,7 @@ def save_weekly_picks(picks: list) -> None:
         "date":  datetime.now().strftime("%Y-%m-%d"),
         "picks": picks,
     })
-    history = history[-12:]          # 최근 12주치만 보관
+    history = history[-2:]            # 이번 주 + 지난 주 2건만 보관
     current["history"] = history
 
     encoded = base64.b64encode(
