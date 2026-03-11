@@ -6,11 +6,14 @@ Vercel Serverless Function (FastAPI)
 from fastapi import FastAPI, Request, HTTPException
 from fastapi.responses import JSONResponse
 import os
+import sys
 import logging
 
-from .data_collector import collect_market_data
-from .analyzer import generate_report
-from .telegram_sender import send_telegram_message
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+from data_collector import collect_market_data
+from analyzer import generate_report
+from telegram_sender import send_telegram_message
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
