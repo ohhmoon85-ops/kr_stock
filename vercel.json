@@ -1,10 +1,5 @@
 {
   "version": 2,
-  "functions": {
-    "api/index.py": {
-      "maxDuration": 300
-    }
-  },
   "routes": [
     { "src": "/api/health",   "dest": "/api/index.py" },
     { "src": "/api/evaluate", "dest": "/api/index.py" },
