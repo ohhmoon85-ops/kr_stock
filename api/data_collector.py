@@ -1,12 +1,14 @@
 """
-시장 데이터 수집 모듈
-- 미 증시: S&P500, NASDAQ, 필라델피아 반도체, 금, 달러인덱스
-- 한국 증시: RSI/MACD/MA/볼린저밴드 + 뉴스
-- 지정학적 리스크: Google News RSS 헤드라인 분석
+시장 데이터 수집 모듈 (최적화 버전)
+- 배치 다운로드: yf.download()로 전 종목 1회 요청
+- 타임아웃 가드: 8초 초과 시 수집 중단, 기수집 데이터로 분석
+- 글로벌 뉴스: Google News RSS (거시경제 키워드 5~10건)
+- 개별 종목 뉴스 수집 제거 (속도 최적화)
 """
 
 import yfinance as yf
 import pandas as pd
+import time
 from datetime import datetime
 import logging
 
@@ -63,18 +65,16 @@ KR_STOCKS = {
     "한화오션":           "042660.KS",
 }
 
-KR_INDICES = {
-    "KOSPI":  "^KS11",
-    "KOSDAQ": "^KQ11",
-}
+KR_INDICES = {"KOSPI": "^KS11", "KOSDAQ": "^KQ11"}
 
-# 지정학적 리스크 키워드
 GEO_RISK_KEYWORDS = [
     "war", "nuclear", "military", "invasion", "missile", "attack",
     "sanctions", "crisis", "conflict", "Iran", "North Korea",
     "Ukraine", "Russia", "rate hike", "emergency", "collapse",
     "recession", "crash", "tariff", "trade war",
 ]
+
+TIME_LIMIT = 55.0   # Vercel 60초 제한 대비 55초 안전선
 
 
 # ── 기술적 지표 계산 ──────────────────────────────────────────────────────────
@@ -95,27 +95,24 @@ def _calc_macd(closes: pd.Series) -> dict:
     ema12  = closes.ewm(span=12, adjust=False).mean()
     ema26  = closes.ewm(span=26, adjust=False).mean()
     macd   = ema12 - ema26
-    signal = macd.ewm(span=9, adjust=False).mean()
+    signal = macd.ewm(span=9,  adjust=False).mean()
     hist   = macd - signal
     return {
-        "macd":      round(float(macd.iloc[-1]), 0),
+        "macd":      round(float(macd.iloc[-1]),   0),
         "signal":    round(float(signal.iloc[-1]), 0),
-        "histogram": round(float(hist.iloc[-1]), 0),
+        "histogram": round(float(hist.iloc[-1]),   0),
     }
 
 
 def _calc_ma(closes: pd.Series) -> dict:
-    """이동평균선 + 정배열 여부"""
     ma5  = closes.rolling(5).mean().iloc[-1]
     ma20 = closes.rolling(20).mean().iloc[-1]
     ma60 = closes.rolling(60).mean().iloc[-1] if len(closes) >= 60 else None
-
     result = {
         "ma5":  round(float(ma5),  0) if not pd.isna(ma5)  else None,
         "ma20": round(float(ma20), 0) if not pd.isna(ma20) else None,
         "ma60": round(float(ma60), 0) if (ma60 is not None and not pd.isna(ma60)) else None,
     }
-    # 정배열: MA5 > MA20 > MA60
     if all(v is not None for v in result.values()):
         result["golden_align"] = result["ma5"] > result["ma20"] > result["ma60"]
     else:
@@ -124,16 +121,13 @@ def _calc_ma(closes: pd.Series) -> dict:
 
 
 def _calc_bollinger(closes: pd.Series, period: int = 20) -> dict:
-    """볼린저 밴드 (20일 기준)"""
     ma    = closes.rolling(period).mean()
     std   = closes.rolling(period).std()
     upper = (ma + 2 * std).iloc[-1]
     lower = (ma - 2 * std).iloc[-1]
     mid   = ma.iloc[-1]
-
     if pd.isna(upper) or pd.isna(lower):
         return {"upper": None, "middle": None, "lower": None, "band_position": None}
-
     width = float(upper) - float(lower)
     last  = float(closes.iloc[-1])
     pos   = round((last - float(lower)) / width, 2) if width > 0 else 0.5
@@ -141,258 +135,283 @@ def _calc_bollinger(closes: pd.Series, period: int = 20) -> dict:
         "upper":         round(float(upper), 0),
         "middle":        round(float(mid),   0),
         "lower":         round(float(lower), 0),
-        "band_position": pos,   # 0=하단 / 0.5=중간 / 1=상단
+        "band_position": pos,
     }
 
 
-# ── 개별 데이터 수집 ──────────────────────────────────────────────────────────
-
-def _get_price_and_technicals(ticker: str) -> dict:
-    """가격 + RSI/MACD/MA/볼린저 수집 (60일 데이터)"""
-    try:
-        tk   = yf.Ticker(ticker)
-        hist = tk.history(period="60d")
-        if hist.empty or len(hist) < 26:
-            return {}
-
-        closes     = hist["Close"]
-        last_close = float(closes.iloc[-1])
-        prev_close = float(closes.iloc[-2])
-        change_pct = (last_close - prev_close) / prev_close * 100
-
-        info = {
-            "close":      round(last_close, 0),
-            "prev_close": round(prev_close, 0),
-            "change_pct": round(change_pct, 2),
-            "volume":     int(hist["Volume"].iloc[-1]),
-            "high":       round(float(hist["High"].iloc[-1]), 0),
-            "low":        round(float(hist["Low"].iloc[-1]),  0),
-            "rsi":        _calc_rsi(closes),
-            "macd":       _calc_macd(closes),
-            "ma":         _calc_ma(closes),
-            "bollinger":  _calc_bollinger(closes),
-        }
-
-        try:
-            mc = tk.fast_info.market_cap
-            info["market_cap"] = int(mc) if mc else None
-        except Exception:
-            info["market_cap"] = None
-
-        return info
-    except Exception as e:
-        logger.warning(f"티커 {ticker} 기본 조회 실패: {e}")
+def _technicals_from_series(closes: pd.Series, volumes: pd.Series, ticker: str) -> dict:
+    """종가/거래량 시리즈에서 모든 기술적 지표 계산"""
+    closes  = closes.dropna()
+    volumes = volumes.dropna()
+    if len(closes) < 26:
         return {}
-
-
-def _get_news(ticker: str, max_items: int = 2) -> list:
-    """최근 뉴스 수집"""
-    try:
-        raw     = yf.Ticker(ticker).news[:max_items]
-        results = []
-        for n in raw:
-            if "content" in n:
-                title = n["content"].get("title", "")
-                pub   = n["content"].get("provider", {}).get("displayName", "")
-            else:
-                title = n.get("title", "")
-                pub   = n.get("publisher", "")
-            if title:
-                results.append({"title": title, "publisher": pub})
-        return results
-    except Exception:
-        return []
+    last_close = float(closes.iloc[-1])
+    prev_close = float(closes.iloc[-2])
+    return {
+        "close":      round(last_close, 0),
+        "prev_close": round(prev_close, 0),
+        "change_pct": round((last_close - prev_close) / prev_close * 100, 2),
+        "volume":     int(volumes.iloc[-1]) if not volumes.empty else 0,
+        "rsi":        _calc_rsi(closes),
+        "macd":       _calc_macd(closes),
+        "ma":         _calc_ma(closes),
+        "bollinger":  _calc_bollinger(closes),
+        "ticker":     ticker,
+    }
 
 
 # ── 지정학적 리스크 수집 ──────────────────────────────────────────────────────
 
 def collect_geopolitical_news() -> dict:
-    """Google News RSS에서 지정학적 리스크 헤드라인 수집 및 위험도 평가"""
+    """Google News RSS: 거시경제·지정학 키워드 헤드라인 (최대 10건)"""
     try:
         import feedparser
-        url  = "https://news.google.com/rss/search?q=war+crisis+geopolitical+risk&hl=en-US&gl=US&ceid=US:en"
+        url  = "https://news.google.com/rss/search?q=war+crisis+geopolitical+risk+economy&hl=en-US&gl=US&ceid=US:en"
         feed = feedparser.parse(url)
 
-        headlines   = []
-        risk_count  = 0
-        for entry in feed.entries[:8]:
+        headlines  = []
+        risk_count = 0
+        for entry in feed.entries[:10]:
             title = entry.get("title", "")
             if not title:
                 continue
             headlines.append(title)
-            tl = title.lower()
-            if any(kw.lower() in tl for kw in GEO_RISK_KEYWORDS):
+            if any(kw.lower() in title.lower() for kw in GEO_RISK_KEYWORDS):
                 risk_count += 1
 
         level = "높음" if risk_count >= 4 else "보통" if risk_count >= 2 else "낮음"
-        logger.info(f"  지정학적 뉴스: {len(headlines)}건 수집, 위험 키워드 {risk_count}건 → {level}")
-        return {"headlines": headlines[:5], "risk_count": risk_count, "risk_level": level}
-
+        logger.info(f"  지정학 뉴스: {len(headlines)}건, 위험 키워드 {risk_count}건 → {level}")
+        return {"headlines": headlines[:7], "risk_count": risk_count, "risk_level": level}
     except Exception as e:
-        logger.warning(f"지정학적 뉴스 수집 실패: {e}")
+        logger.warning(f"지정학 뉴스 수집 실패: {e}")
         return {"headlines": [], "risk_count": 0, "risk_level": "알 수 없음"}
 
 
-# ── 수집 메인 함수 ─────────────────────────────────────────────────────────────
+# ── 배치 수집 ─────────────────────────────────────────────────────────────────
 
 def collect_us_indices() -> dict:
-    result = {}
-    for name, ticker in US_INDICES.items():
-        try:
-            tk   = yf.Ticker(ticker)
-            hist = tk.history(period="5d")
-            if hist.empty or len(hist) < 2:
-                continue
-            closes = hist["Close"]
-            change = (float(closes.iloc[-1]) - float(closes.iloc[-2])) / float(closes.iloc[-2]) * 100
-            result[name] = {
-                "close":      round(float(closes.iloc[-1]), 2),
-                "change_pct": round(change, 2),
-            }
-            logger.info(f"  {name}: {result[name]['close']} ({change:+.2f}%)")
-        except Exception as e:
-            logger.warning(f"  {name} 조회 실패: {e}")
+    """미 증시 + 안전자산 지수 배치 수집"""
+    tickers = list(US_INDICES.values())
+    names   = list(US_INDICES.keys())
+    result  = {}
+    try:
+        raw = yf.download(tickers, period="5d", auto_adjust=True,
+                          progress=False, threads=True)
+        close_df = raw["Close"] if "Close" in raw.columns else raw.xs("Close", axis=1, level=0)
+        for name, ticker in zip(names, tickers):
+            try:
+                col = close_df[ticker].dropna()
+                if len(col) < 2:
+                    continue
+                change = (float(col.iloc[-1]) - float(col.iloc[-2])) / float(col.iloc[-2]) * 100
+                result[name] = {"close": round(float(col.iloc[-1]), 2), "change_pct": round(change, 2)}
+            except Exception:
+                pass
+    except Exception as e:
+        logger.warning(f"미 증시 배치 실패, 개별 시도: {e}")
+        for name, ticker in zip(names, tickers):
+            try:
+                hist = yf.Ticker(ticker).history(period="5d")
+                if len(hist) < 2:
+                    continue
+                c = hist["Close"]
+                change = (float(c.iloc[-1]) - float(c.iloc[-2])) / float(c.iloc[-2]) * 100
+                result[name] = {"close": round(float(c.iloc[-1]), 2), "change_pct": round(change, 2)}
+            except Exception:
+                pass
+    logger.info(f"  미 증시 {len(result)}/{len(tickers)}개 수집")
     return result
 
 
 def collect_kr_indices() -> dict:
-    result = {}
-    for name, ticker in KR_INDICES.items():
-        try:
-            tk   = yf.Ticker(ticker)
-            hist = tk.history(period="5d")
-            if hist.empty or len(hist) < 2:
-                continue
-            closes = hist["Close"]
-            change = (float(closes.iloc[-1]) - float(closes.iloc[-2])) / float(closes.iloc[-2]) * 100
-            result[name] = {
-                "close":      round(float(closes.iloc[-1]), 2),
-                "change_pct": round(change, 2),
-            }
-        except Exception as e:
-            logger.warning(f"  {name} 조회 실패: {e}")
+    """KOSPI/KOSDAQ 배치 수집"""
+    tickers = list(KR_INDICES.values())
+    names   = list(KR_INDICES.keys())
+    result  = {}
+    try:
+        raw = yf.download(tickers, period="5d", auto_adjust=True,
+                          progress=False, threads=True)
+        close_df = raw["Close"] if isinstance(raw.columns, pd.Index) else raw.xs("Close", axis=1, level=0)
+        for name, ticker in zip(names, tickers):
+            try:
+                col = close_df[ticker].dropna()
+                if len(col) < 2:
+                    continue
+                change = (float(col.iloc[-1]) - float(col.iloc[-2])) / float(col.iloc[-2]) * 100
+                result[name] = {"close": round(float(col.iloc[-1]), 2), "change_pct": round(change, 2)}
+            except Exception:
+                pass
+    except Exception as e:
+        logger.warning(f"한국 지수 배치 실패: {e}")
     return result
 
 
-def collect_kr_stocks() -> dict:
+def collect_kr_stocks(start_time: float) -> dict:
     """
-    1단계: 전 종목 가격+기술적 지표 수집
-    2단계: RSI/MACD 모멘텀 점수로 상위 15개 선별
-    3단계: 선별 종목에 뉴스 추가
+    한국 종목 배치 수집 + 기술적 지표 계산
+    - yf.download() 1회 요청으로 전 종목 데이터 수신
+    - 타임아웃 가드: 8초 초과 시 기수집 데이터만 반환
     """
-    raw = {}
-    for name, ticker in KR_STOCKS.items():
-        info = _get_price_and_technicals(ticker)
-        if info:
-            raw[name] = {**info, "ticker": ticker}
+    tickers = list(KR_STOCKS.values())
+    names   = list(KR_STOCKS.keys())
 
+    # ── 1회 배치 다운로드 ──
+    logger.info("  한국 종목 배치 다운로드 중...")
+    try:
+        raw = yf.download(
+            tickers, period="60d", auto_adjust=True,
+            progress=False, threads=True, timeout=20,
+        )
+    except Exception as e:
+        logger.warning(f"배치 다운로드 실패: {e}")
+        raw = None
+
+    result = {}
+
+    if raw is not None and not raw.empty:
+        try:
+            # MultiIndex: (Price, Ticker) 또는 단일 Index
+            if isinstance(raw.columns, pd.MultiIndex):
+                close_df  = raw["Close"]
+                volume_df = raw["Volume"]
+            else:
+                close_df  = raw[["Close"]]
+                volume_df = raw[["Volume"]]
+
+            for name, ticker in zip(names, tickers):
+                if time.time() - start_time > TIME_LIMIT:
+                    logger.warning(f"⏱ 타임아웃 가드 발동 ({len(result)}개 처리 후 중단)")
+                    break
+                try:
+                    closes  = close_df[ticker].dropna()  if ticker in close_df.columns  else pd.Series(dtype=float)
+                    volumes = volume_df[ticker].dropna() if ticker in volume_df.columns else pd.Series(dtype=float)
+                    info = _technicals_from_series(closes, volumes, ticker)
+                    if info:
+                        result[name] = info
+                except Exception as ex:
+                    logger.debug(f"  {name} 지표 계산 실패: {ex}")
+        except Exception as e:
+            logger.warning(f"배치 데이터 파싱 실패: {e}")
+
+    # 배치 실패 시 개별 수집 (타임아웃 가드 적용)
+    if not result:
+        logger.info("  개별 수집으로 폴백...")
+        for name, ticker in zip(names, tickers):
+            if time.time() - start_time > TIME_LIMIT:
+                logger.warning(f"⏱ 타임아웃 가드 발동 ({len(result)}개 처리 후 중단)")
+                break
+            try:
+                hist = yf.Ticker(ticker).history(period="60d")
+                if hist.empty or len(hist) < 26:
+                    continue
+                info = _technicals_from_series(hist["Close"], hist["Volume"], ticker)
+                if info:
+                    result[name] = info
+            except Exception:
+                pass
+
+    # ── 모멘텀 점수 정렬 → 상위 15개 ──
     def score(item):
-        rsi  = item[1].get("rsi") or 50
-        hist = (item[1].get("macd") or {}).get("histogram", 0)
-        vol  = item[1].get("volume", 0)
-        ma   = item[1].get("ma") or {}
-        rsi_ok    = 1 if 40 <= rsi <= 65 else 0
-        macd_ok   = 1 if hist > 0 else 0
-        golden_ok = 1 if ma.get("golden_align") else 0
-        return (rsi_ok + macd_ok + golden_ok, vol)
+        rsi     = item[1].get("rsi") or 50
+        hist_v  = (item[1].get("macd") or {}).get("histogram", 0)
+        ma      = item[1].get("ma") or {}
+        vol     = item[1].get("volume", 0)
+        return (
+            (1 if 40 <= rsi <= 65 else 0)
+            + (1 if hist_v > 0 else 0)
+            + (1 if ma.get("golden_align") else 0),
+            vol,
+        )
 
-    top15 = dict(sorted(raw.items(), key=score, reverse=True)[:15])
-
-    for name, info in top15.items():
-        top15[name]["news"] = _get_news(info["ticker"])
-
-    logger.info(f"  한국 종목 최종 선별: {len(top15)}개")
+    top15 = dict(sorted(result.items(), key=score, reverse=True)[:15])
+    logger.info(f"  한국 종목: {len(result)}개 수집 → 상위 {len(top15)}개 선별")
     return top15
 
 
 # ── 프롬프트 포맷터 ────────────────────────────────────────────────────────────
 
 def format_market_data_for_prompt(market_data: dict) -> str:
-    lines = []
-    today = datetime.now().strftime("%Y년 %m월 %d일")
-    lines.append(f"[분석 기준일: {today}]")
+    lines = [f"[분석 기준일: {datetime.now().strftime('%Y년 %m월 %d일')}]"]
 
-    # ── 지정학적 리스크 ──
+    # 지정학적 리스크
     geo = market_data.get("geo_risk", {})
     lines.append(f"\n### 지정학적 리스크")
-    lines.append(f"- 위험도: {geo.get('risk_level', '알 수 없음')} (위험 키워드 {geo.get('risk_count', 0)}건)")
+    lines.append(f"- 위험도: {geo.get('risk_level','알 수 없음')} (위험 키워드 {geo.get('risk_count',0)}건)")
     for h in geo.get("headlines", []):
         lines.append(f"  - {h}")
 
-    # ── 미 증시 ──
+    # 미 증시 + 안전자산
     lines.append("\n### 전일 미 증시 지수 (금·달러 포함)")
     for name, info in market_data.get("us_indices", {}).items():
         sign = "+" if info["change_pct"] >= 0 else ""
         lines.append(f"- {name}: {info['close']:,.2f} ({sign}{info['change_pct']:.2f}%)")
 
-    # ── 한국 지수 ──
+    # 한국 지수
     lines.append("\n### 한국 증시 지수")
     for name, info in market_data.get("kr_indices", {}).items():
         sign = "+" if info["change_pct"] >= 0 else ""
         lines.append(f"- {name}: {info['close']:,.2f} ({sign}{info['change_pct']:.2f}%)")
 
-    # ── 한국 종목 ──
-    lines.append("\n### 한국 주요 종목 (RSI·MACD·MA·볼린저)")
-    lines.append("종목명 | 종가 | 등락률 | RSI | MACD히스토 | MA정배열 | 볼린저위치 | 시가총액(조)")
-    lines.append("---|---|---|---|---|---|---|---")
+    # 한국 종목 요약표
+    lines.append("\n### 한국 주요 종목 (기술적 지표)")
+    lines.append("종목명 | 종가 | 등락률 | RSI | MACD히스토 | MA정배열 | 볼린저위치")
+    lines.append("---|---|---|---|---|---|---")
     for name, info in market_data.get("kr_stocks", {}).items():
         sign   = "+" if info["change_pct"] >= 0 else ""
         rsi    = info.get("rsi") or "-"
-        hist   = (info.get("macd") or {}).get("histogram", "-")
+        hist_v = (info.get("macd") or {}).get("histogram", "-")
         ma     = info.get("ma") or {}
         golden = "정배열✓" if ma.get("golden_align") else ("역배열✗" if ma.get("golden_align") is False else "-")
         bb     = info.get("bollinger") or {}
-        bb_pos = f"{bb.get('band_position', '-')}" if bb.get("band_position") is not None else "-"
-        mc     = info.get("market_cap")
-        mc_str = f"{mc/1e12:.1f}조" if mc else "-"
+        bb_pos = bb.get("band_position", "-")
         lines.append(
             f"{name} | {info['close']:,} | {sign}{info['change_pct']:.2f}% "
-            f"| {rsi} | {hist} | {golden} | {bb_pos} | {mc_str}"
+            f"| {rsi} | {hist_v} | {golden} | {bb_pos}"
         )
 
-    # ── MA 상세 ──
-    lines.append("\n### 이동평균선 상세 (MA5 / MA20 / MA60)")
+    # MA 상세
+    lines.append("\n### 이동평균선 (MA5 / MA20 / MA60)")
     for name, info in market_data.get("kr_stocks", {}).items():
         ma = info.get("ma") or {}
         if any(ma.get(k) for k in ("ma5", "ma20", "ma60")):
             lines.append(
-                f"- {name}: MA5={ma.get('ma5','-'):,}  MA20={ma.get('ma20','-'):,}  MA60={ma.get('ma60','-') or '-'}"
+                f"- {name}: MA5={ma.get('ma5','-')}  "
+                f"MA20={ma.get('ma20','-')}  MA60={ma.get('ma60','-') or '-'}"
             )
 
-    # ── 볼린저 밴드 상세 ──
-    lines.append("\n### 볼린저 밴드 상세 (상단/중간/하단)")
+    # 볼린저 밴드 상세
+    lines.append("\n### 볼린저 밴드 (상단/중간/하단)")
     for name, info in market_data.get("kr_stocks", {}).items():
         bb = info.get("bollinger") or {}
         if bb.get("upper"):
             lines.append(
-                f"- {name}: 상단={bb['upper']:,}  중간={bb['middle']:,}  하단={bb['lower']:,}"
-                f"  (현재위치={bb.get('band_position','-')})"
+                f"- {name}: 상단={bb['upper']:,}  중간={bb['middle']:,}  "
+                f"하단={bb['lower']:,}  위치={bb.get('band_position','-')}"
             )
-
-    # ── 뉴스 ──
-    lines.append("\n### 종목별 최근 뉴스")
-    for name, info in market_data.get("kr_stocks", {}).items():
-        news_list = info.get("news", [])
-        if news_list:
-            lines.append(f"**{name}**")
-            for n in news_list:
-                lines.append(f"  - [{n['publisher']}] {n['title']}")
 
     return "\n".join(lines)
 
 
+# ── 메인 수집 함수 ─────────────────────────────────────────────────────────────
+
 def collect_market_data() -> dict:
-    logger.info("지정학적 리스크 뉴스 수집...")
+    start_time = time.time()
+
+    logger.info("① 지정학적 리스크 뉴스 수집...")
     geo_risk = collect_geopolitical_news()
+    logger.info(f"   완료 ({time.time()-start_time:.1f}s)")
 
-    logger.info("미 증시 지수 수집 (금·달러 포함)...")
+    logger.info("② 미 증시 지수 배치 수집...")
     us_indices = collect_us_indices()
+    logger.info(f"   완료 ({time.time()-start_time:.1f}s)")
 
-    logger.info("한국 지수 수집...")
+    logger.info("③ 한국 지수 수집...")
     kr_indices = collect_kr_indices()
+    logger.info(f"   완료 ({time.time()-start_time:.1f}s)")
 
-    logger.info("한국 종목 수집 (RSI/MACD/MA/볼린저/뉴스)...")
-    kr_stocks = collect_kr_stocks()
+    logger.info("④ 한국 종목 배치 수집 + 기술적 지표...")
+    kr_stocks = collect_kr_stocks(start_time)
+    logger.info(f"   완료 ({time.time()-start_time:.1f}s)")
 
     market_data = {
         "geo_risk":     geo_risk,
@@ -400,6 +419,8 @@ def collect_market_data() -> dict:
         "kr_indices":   kr_indices,
         "kr_stocks":    kr_stocks,
         "collected_at": datetime.now().isoformat(),
+        "elapsed_sec":  round(time.time() - start_time, 1),
     }
     market_data["prompt_text"] = format_market_data_for_prompt(market_data)
+    logger.info(f"전체 데이터 수집 완료: {market_data['elapsed_sec']}초")
     return market_data
