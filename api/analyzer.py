@@ -110,7 +110,9 @@ def generate_report(market_data: dict) -> str:
 {market_data['prompt_text']}
 
 위 데이터를 분석하여 지정된 형식에 맞는 한국어 투자 리포트를 작성해주세요.
-단기 매수 추천 종목 5개를 반드시 포함하세요. 장기 종목은 제외합니다."""
+단기 매수 추천 종목 5개를 반드시 포함하세요. 장기 종목은 제외합니다.
+일부 데이터가 누락되거나 "-"로 표시된 경우에도 가용한 데이터를 최대한 활용하여 분석을 완성하세요.
+절대 "데이터 부족"이라는 이유로 분석을 거부하지 마세요."""
 
     logger.info("GPT-4o API 호출 중...")
     response = client.chat.completions.create(

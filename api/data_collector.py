@@ -236,12 +236,10 @@ def collect_kr_stocks() -> dict:
 
     top15 = dict(sorted(filtered.items(), key=score, reverse=True)[:15])
 
-    # 4단계: 상위 15개에만 PER/PBR + 뉴스 추가
+    # 4단계: 상위 15개에만 뉴스 추가 (PER/PBR은 yfinance 한국주식 미지원으로 제외)
     for name, info in top15.items():
         ticker = info["ticker"]
-        fund   = _get_fundamentals(ticker)
         news   = _get_news(ticker)
-        top15[name].update(fund)
         top15[name]["news"] = news
 
     logger.info(f"  한국 종목 최종 선별: {len(top15)}개 (시가총액·모멘텀 필터 적용)")
