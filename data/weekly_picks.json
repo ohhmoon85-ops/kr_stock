@@ -39,6 +39,46 @@
           "stop_price": 0
         }
       ]
+    },
+    {
+      "date": "2026-03-12",
+      "picks": [
+        {
+          "name": "방산주 A",
+          "ticker": "BSA",
+          "entry_price": 50000,
+          "target_price": 55000,
+          "stop_price": 48000
+        },
+        {
+          "name": "에너지주 B",
+          "ticker": "ENB",
+          "entry_price": 70000,
+          "target_price": 77000,
+          "stop_price": 67000
+        },
+        {
+          "name": "배터리주 C",
+          "ticker": "BTC",
+          "entry_price": 30000,
+          "target_price": 33000,
+          "stop_price": 29000
+        },
+        {
+          "name": "통신주 D",
+          "ticker": "TCD",
+          "entry_price": 40000,
+          "target_price": 44000,
+          "stop_price": 39000
+        },
+        {
+          "name": "IT주 E",
+          "ticker": "ITE",
+          "entry_price": 80000,
+          "target_price": 88000,
+          "stop_price": 78000
+        }
+      ]
     }
   ]
 }
