@@ -4,46 +4,6 @@
       "date": "2026-03-12",
       "picks": [
         {
-          "name": "한화에어로스페이스",
-          "ticker": "012450.KS",
-          "entry_price": 50000,
-          "target_price": 52000,
-          "stop_price": 48000
-        },
-        {
-          "name": "SK이노베이션",
-          "ticker": "096770.KS",
-          "entry_price": 120000,
-          "target_price": 125000,
-          "stop_price": 115000
-        },
-        {
-          "name": "현대건설",
-          "ticker": "000720.KS",
-          "entry_price": 35000,
-          "target_price": 36500,
-          "stop_price": 33500
-        },
-        {
-          "name": "삼성전자",
-          "ticker": "005930.KS",
-          "entry_price": 70000,
-          "target_price": 73000,
-          "stop_price": 67000
-        },
-        {
-          "name": "셀트리온",
-          "ticker": "068270.KS",
-          "entry_price": 150000,
-          "target_price": 156000,
-          "stop_price": 144000
-        }
-      ]
-    },
-    {
-      "date": "2026-03-12",
-      "picks": [
-        {
           "name": "삼성전자",
           "ticker": "005930.KS",
           "entry_price": null,
@@ -77,6 +37,46 @@
           "entry_price": null,
           "target_price": 4,
           "stop_price": -3
+        }
+      ]
+    },
+    {
+      "date": "2026-03-12",
+      "picks": [
+        {
+          "name": "삼성전기",
+          "ticker": "009150.KS",
+          "entry_price": 120000,
+          "target_price": 126000,
+          "stop_price": 115000
+        },
+        {
+          "name": "LG에너지솔루션",
+          "ticker": "373220.KS",
+          "entry_price": 500000,
+          "target_price": 525000,
+          "stop_price": 475000
+        },
+        {
+          "name": "현대차",
+          "ticker": "005380.KS",
+          "entry_price": 200000,
+          "target_price": 210000,
+          "stop_price": 190000
+        },
+        {
+          "name": "POSCO",
+          "ticker": "005490.KS",
+          "entry_price": 350000,
+          "target_price": 367500,
+          "stop_price": 332500
+        },
+        {
+          "name": "한국전력",
+          "ticker": "015760.KS",
+          "entry_price": 20000,
+          "target_price": 21000,
+          "stop_price": 19000
         }
       ]
     }
