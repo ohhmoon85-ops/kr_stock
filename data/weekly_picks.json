@@ -1,1 +1,44 @@
-{"history":[]}
+{
+  "history": [
+    {
+      "date": "2026-03-12",
+      "picks": [
+        {
+          "name": "삼성전자",
+          "ticker": "005930.KS",
+          "entry_price": 0,
+          "target_price": 0,
+          "stop_price": 0
+        },
+        {
+          "name": "SK하이닉스",
+          "ticker": "000660.KS",
+          "entry_price": 0,
+          "target_price": 0,
+          "stop_price": 0
+        },
+        {
+          "name": "LG에너지솔루션",
+          "ticker": "373220.KS",
+          "entry_price": 0,
+          "target_price": 0,
+          "stop_price": 0
+        },
+        {
+          "name": "카카오",
+          "ticker": "035720.KS",
+          "entry_price": 0,
+          "target_price": 0,
+          "stop_price": 0
+        },
+        {
+          "name": "한화에어로스페이스",
+          "ticker": "012450.KS",
+          "entry_price": 0,
+          "target_price": 0,
+          "stop_price": 0
+        }
+      ]
+    }
+  ]
+}
