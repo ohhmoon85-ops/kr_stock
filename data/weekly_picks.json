@@ -4,46 +4,6 @@
       "date": "2026-03-12",
       "picks": [
         {
-          "name": "삼성전자",
-          "ticker": "005930.KS",
-          "entry_price": 0,
-          "target_price": 0,
-          "stop_price": 0
-        },
-        {
-          "name": "SK하이닉스",
-          "ticker": "000660.KS",
-          "entry_price": 0,
-          "target_price": 0,
-          "stop_price": 0
-        },
-        {
-          "name": "LG에너지솔루션",
-          "ticker": "373220.KS",
-          "entry_price": 0,
-          "target_price": 0,
-          "stop_price": 0
-        },
-        {
-          "name": "카카오",
-          "ticker": "035720.KS",
-          "entry_price": 0,
-          "target_price": 0,
-          "stop_price": 0
-        },
-        {
-          "name": "한화에어로스페이스",
-          "ticker": "012450.KS",
-          "entry_price": 0,
-          "target_price": 0,
-          "stop_price": 0
-        }
-      ]
-    },
-    {
-      "date": "2026-03-12",
-      "picks": [
-        {
           "name": "방산주 A",
           "ticker": "BSA",
           "entry_price": 50000,
@@ -77,6 +37,46 @@
           "entry_price": 80000,
           "target_price": 88000,
           "stop_price": 78000
+        }
+      ]
+    },
+    {
+      "date": "2026-03-12",
+      "picks": [
+        {
+          "name": "한화에어로스페이스",
+          "ticker": "012450.KS",
+          "entry_price": 50000,
+          "target_price": 52000,
+          "stop_price": 48000
+        },
+        {
+          "name": "SK이노베이션",
+          "ticker": "096770.KS",
+          "entry_price": 120000,
+          "target_price": 125000,
+          "stop_price": 115000
+        },
+        {
+          "name": "현대건설",
+          "ticker": "000720.KS",
+          "entry_price": 35000,
+          "target_price": 36500,
+          "stop_price": 33500
+        },
+        {
+          "name": "삼성전자",
+          "ticker": "005930.KS",
+          "entry_price": 70000,
+          "target_price": 73000,
+          "stop_price": 67000
+        },
+        {
+          "name": "셀트리온",
+          "ticker": "068270.KS",
+          "entry_price": 150000,
+          "target_price": 156000,
+          "stop_price": 144000
         }
       ]
     }
