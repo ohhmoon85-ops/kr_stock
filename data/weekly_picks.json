@@ -1,46 +1,6 @@
 {
   "history": [
     {
-      "date": "2026-03-12",
-      "picks": [
-        {
-          "name": "삼성전자",
-          "ticker": "005930.KS",
-          "entry_price": 65000,
-          "target_price": 67000,
-          "stop_price": 63000
-        },
-        {
-          "name": "SK하이닉스",
-          "ticker": "000660.KS",
-          "entry_price": 120000,
-          "target_price": 124000,
-          "stop_price": 116000
-        },
-        {
-          "name": "LG화학",
-          "ticker": "051910.KS",
-          "entry_price": 700000,
-          "target_price": 725000,
-          "stop_price": 675000
-        },
-        {
-          "name": "현대차",
-          "ticker": "005380.KS",
-          "entry_price": 210000,
-          "target_price": 217000,
-          "stop_price": 203000
-        },
-        {
-          "name": "카카오",
-          "ticker": "035720.KS",
-          "entry_price": 95000,
-          "target_price": 98000,
-          "stop_price": 92000
-        }
-      ]
-    },
-    {
       "date": "2026-03-13",
       "picks": [
         {
@@ -77,6 +37,46 @@
           "entry_price": 780000,
           "target_price": 819000,
           "stop_price": 760000
+        }
+      ]
+    },
+    {
+      "date": "2026-03-13",
+      "picks": [
+        {
+          "name": "삼성중공업",
+          "ticker": "010140.KS",
+          "entry_price": 30700,
+          "target_price": 32200,
+          "stop_price": 29800
+        },
+        {
+          "name": "한화오션",
+          "ticker": "009450.KS",
+          "entry_price": 136900,
+          "target_price": 142300,
+          "stop_price": 133000
+        },
+        {
+          "name": "리노공업",
+          "ticker": "058470.KS",
+          "entry_price": 117800,
+          "target_price": 122500,
+          "stop_price": 114000
+        },
+        {
+          "name": "LIG넥스원",
+          "ticker": "079550.KS",
+          "entry_price": 723000,
+          "target_price": 755000,
+          "stop_price": 698000
+        },
+        {
+          "name": "한화에어로스페이스",
+          "ticker": "012450.KS",
+          "entry_price": 1488000,
+          "target_price": 1545000,
+          "stop_price": 1440000
         }
       ]
     }
