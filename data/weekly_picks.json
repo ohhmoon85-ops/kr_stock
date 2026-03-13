@@ -4,46 +4,6 @@
       "date": "2026-03-12",
       "picks": [
         {
-          "name": "삼성전기",
-          "ticker": "009150.KS",
-          "entry_price": 120000,
-          "target_price": 126000,
-          "stop_price": 115000
-        },
-        {
-          "name": "LG에너지솔루션",
-          "ticker": "373220.KS",
-          "entry_price": 500000,
-          "target_price": 525000,
-          "stop_price": 475000
-        },
-        {
-          "name": "현대차",
-          "ticker": "005380.KS",
-          "entry_price": 200000,
-          "target_price": 210000,
-          "stop_price": 190000
-        },
-        {
-          "name": "POSCO",
-          "ticker": "005490.KS",
-          "entry_price": 350000,
-          "target_price": 367500,
-          "stop_price": 332500
-        },
-        {
-          "name": "한국전력",
-          "ticker": "015760.KS",
-          "entry_price": 20000,
-          "target_price": 21000,
-          "stop_price": 19000
-        }
-      ]
-    },
-    {
-      "date": "2026-03-12",
-      "picks": [
-        {
           "name": "삼성전자",
           "ticker": "005930.KS",
           "entry_price": 65000,
@@ -77,6 +37,46 @@
           "entry_price": 95000,
           "target_price": 98000,
           "stop_price": 92000
+        }
+      ]
+    },
+    {
+      "date": "2026-03-13",
+      "picks": [
+        {
+          "name": "삼성전자",
+          "ticker": "005930.KS",
+          "entry_price": 70000,
+          "target_price": 73500,
+          "stop_price": 68000
+        },
+        {
+          "name": "현대차",
+          "ticker": "005380.KS",
+          "entry_price": 200000,
+          "target_price": 210000,
+          "stop_price": 194000
+        },
+        {
+          "name": "POSCO",
+          "ticker": "005490.KS",
+          "entry_price": 320000,
+          "target_price": 336000,
+          "stop_price": 312000
+        },
+        {
+          "name": "SK하이닉스",
+          "ticker": "000660.KS",
+          "entry_price": 115000,
+          "target_price": 120750,
+          "stop_price": 112000
+        },
+        {
+          "name": "LG화학",
+          "ticker": "051910.KS",
+          "entry_price": 780000,
+          "target_price": 819000,
+          "stop_price": 760000
         }
       ]
     }
