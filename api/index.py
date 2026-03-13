@@ -20,6 +20,8 @@ class handler(BaseHTTPRequestHandler):
             self._run_analysis()
         elif path == "/api/evaluate":
             self._run_evaluation()
+        elif path == "/api/test":
+            self._run_test()
         else:
             self._respond(404, {"error": "Not found"})
 
@@ -73,6 +75,24 @@ class handler(BaseHTTPRequestHandler):
                 send_telegram_message(f"⚠️ *오류 발생*\n`{str(e)}`")
             except Exception:
                 pass
+            self._respond(500, {"error": str(e)})
+
+    # ── 데이터 수집 테스트 ────────────────────────────────────────────────────
+
+    def _run_test(self):
+        try:
+            from data_collector import collect_market_data
+            market_data = collect_market_data()
+            summary = {
+                "us_indices_count": len(market_data.get("us_indices", {})),
+                "kr_stocks_count":  len(market_data.get("kr_stocks", {})),
+                "us_indices": {k: v for k, v in market_data.get("us_indices", {}).items()},
+                "kr_stocks":  {k: {"close": v.get("close"), "rsi": v.get("rsi")}
+                               for k, v in market_data.get("kr_stocks", {}).items()},
+                "elapsed_sec": market_data.get("elapsed_sec"),
+            }
+            self._respond(200, summary)
+        except Exception as e:
             self._respond(500, {"error": str(e)})
 
     # ── 주간 성과 평가 (매주 월요일 08:00 KST) ───────────────────────────────
