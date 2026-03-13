@@ -4,46 +4,6 @@
       "date": "2026-03-13",
       "picks": [
         {
-          "name": "삼성전자",
-          "ticker": "005930.KS",
-          "entry_price": 70000,
-          "target_price": 73500,
-          "stop_price": 68000
-        },
-        {
-          "name": "현대차",
-          "ticker": "005380.KS",
-          "entry_price": 200000,
-          "target_price": 210000,
-          "stop_price": 194000
-        },
-        {
-          "name": "POSCO",
-          "ticker": "005490.KS",
-          "entry_price": 320000,
-          "target_price": 336000,
-          "stop_price": 312000
-        },
-        {
-          "name": "SK하이닉스",
-          "ticker": "000660.KS",
-          "entry_price": 115000,
-          "target_price": 120750,
-          "stop_price": 112000
-        },
-        {
-          "name": "LG화학",
-          "ticker": "051910.KS",
-          "entry_price": 780000,
-          "target_price": 819000,
-          "stop_price": 760000
-        }
-      ]
-    },
-    {
-      "date": "2026-03-13",
-      "picks": [
-        {
           "name": "삼성중공업",
           "ticker": "010140.KS",
           "entry_price": 30700,
@@ -77,6 +37,46 @@
           "entry_price": 1488000,
           "target_price": 1545000,
           "stop_price": 1440000
+        }
+      ]
+    },
+    {
+      "date": "2026-03-13",
+      "picks": [
+        {
+          "name": "삼성중공업",
+          "ticker": "010140.KS",
+          "entry_price": 30700,
+          "target_price": 32200,
+          "stop_price": 29500
+        },
+        {
+          "name": "한화오션",
+          "ticker": "009540.KS",
+          "entry_price": 136900,
+          "target_price": 144000,
+          "stop_price": 130000
+        },
+        {
+          "name": "크래프톤",
+          "ticker": "259960.KS",
+          "entry_price": 244500,
+          "target_price": 256500,
+          "stop_price": 234000
+        },
+        {
+          "name": "HD현대중공업",
+          "ticker": "267250.KS",
+          "entry_price": 596000,
+          "target_price": 623000,
+          "stop_price": 570000
+        },
+        {
+          "name": "삼성전자",
+          "ticker": "005930.KS",
+          "entry_price": 183500,
+          "target_price": 192500,
+          "stop_price": 175000
         }
       ]
     }
