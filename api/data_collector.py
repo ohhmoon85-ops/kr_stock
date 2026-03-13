@@ -9,8 +9,10 @@
 import yfinance as yf
 import pandas as pd
 import time
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 import logging
+
+KST = timezone(timedelta(hours=9))
 
 logger = logging.getLogger(__name__)
 
@@ -68,10 +70,9 @@ KR_STOCKS = {
 KR_INDICES = {"KOSPI": "^KS11", "KOSDAQ": "^KQ11"}
 
 GEO_RISK_KEYWORDS = [
-    "war", "nuclear", "military", "invasion", "missile", "attack",
-    "sanctions", "crisis", "conflict", "Iran", "North Korea",
-    "Ukraine", "Russia", "rate hike", "emergency", "collapse",
-    "recession", "crash", "tariff", "trade war",
+    "nuclear", "invasion", "missile", "World War",
+    "North Korea", "Iran attack", "Ukraine war",
+    "military strike", "armed conflict",
 ]
 
 TIME_LIMIT = 55.0   # Vercel 60초 제한 대비 55초 안전선
@@ -179,7 +180,7 @@ def collect_geopolitical_news() -> dict:
             if any(kw.lower() in title.lower() for kw in GEO_RISK_KEYWORDS):
                 risk_count += 1
 
-        level = "높음" if risk_count >= 4 else "보통" if risk_count >= 2 else "낮음"
+        level = "높음" if risk_count >= 3 else "보통" if risk_count >= 1 else "낮음"
         logger.info(f"  지정학 뉴스: {len(headlines)}건, 위험 키워드 {risk_count}건 → {level}")
         return {"headlines": headlines[:7], "risk_count": risk_count, "risk_level": level}
     except Exception as e:
@@ -194,31 +195,17 @@ def collect_us_indices() -> dict:
     tickers = list(US_INDICES.values())
     names   = list(US_INDICES.keys())
     result  = {}
-    try:
-        raw = yf.download(tickers, period="5d", auto_adjust=True,
-                          progress=False, threads=True)
-        close_df = raw["Close"] if "Close" in raw.columns else raw.xs("Close", axis=1, level=0)
-        for name, ticker in zip(names, tickers):
-            try:
-                col = close_df[ticker].dropna()
-                if len(col) < 2:
-                    continue
-                change = (float(col.iloc[-1]) - float(col.iloc[-2])) / float(col.iloc[-2]) * 100
-                result[name] = {"close": round(float(col.iloc[-1]), 2), "change_pct": round(change, 2)}
-            except Exception:
-                pass
-    except Exception as e:
-        logger.warning(f"미 증시 배치 실패, 개별 시도: {e}")
-        for name, ticker in zip(names, tickers):
-            try:
-                hist = yf.Ticker(ticker).history(period="5d")
-                if len(hist) < 2:
-                    continue
-                c = hist["Close"]
-                change = (float(c.iloc[-1]) - float(c.iloc[-2])) / float(c.iloc[-2]) * 100
-                result[name] = {"close": round(float(c.iloc[-1]), 2), "change_pct": round(change, 2)}
-            except Exception:
-                pass
+    # 개별 수집 (가장 안정적)
+    for name, ticker in zip(names, tickers):
+        try:
+            hist = yf.Ticker(ticker).history(period="5d")
+            if hist.empty or len(hist) < 2:
+                continue
+            c = hist["Close"]
+            change = (float(c.iloc[-1]) - float(c.iloc[-2])) / float(c.iloc[-2]) * 100
+            result[name] = {"close": round(float(c.iloc[-1]), 2), "change_pct": round(change, 2)}
+        except Exception:
+            pass
     logger.info(f"  미 증시 {len(result)}/{len(tickers)}개 수집")
     return result
 
@@ -331,7 +318,7 @@ def collect_kr_stocks(start_time: float) -> dict:
 # ── 프롬프트 포맷터 ────────────────────────────────────────────────────────────
 
 def format_market_data_for_prompt(market_data: dict) -> str:
-    lines = [f"[분석 기준일: {datetime.now().strftime('%Y년 %m월 %d일')}]"]
+    lines = [f"[분석 기준일: {datetime.now(KST).strftime('%Y년 %m월 %d일')}]"]
 
     # 지정학적 리스크
     geo = market_data.get("geo_risk", {})
@@ -418,7 +405,7 @@ def collect_market_data() -> dict:
         "us_indices":   us_indices,
         "kr_indices":   kr_indices,
         "kr_stocks":    kr_stocks,
-        "collected_at": datetime.now().isoformat(),
+        "collected_at": datetime.now(KST).isoformat(),
         "elapsed_sec":  round(time.time() - start_time, 1),
     }
     market_data["prompt_text"] = format_market_data_for_prompt(market_data)
