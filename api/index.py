@@ -41,6 +41,36 @@ class handler(BaseHTTPRequestHandler):
             return
 
         try:
+            from datetime import datetime, timezone, timedelta
+            KST = timezone(timedelta(hours=9))
+            now = datetime.now(KST)
+
+            # 한국 공휴일 목록 (년도별 추가 필요)
+            KR_HOLIDAYS = {
+                # 2026년 공휴일
+                "2026-01-01", "2026-01-28", "2026-01-29", "2026-01-30",
+                "2026-03-01", "2026-05-05", "2026-05-25", "2026-06-06",
+                "2026-08-15", "2026-09-24", "2026-09-25", "2026-09-26",
+                "2026-10-03", "2026-10-09", "2026-12-25",
+            }
+
+            today_str = now.strftime("%Y-%m-%d")
+            weekday   = now.weekday()  # 0=월 ~ 6=일
+
+            if weekday >= 5:  # 토(5), 일(6)
+                msg = f"📅 *{today_str}*\n오늘은 주말입니다. 주식 시장이 휴장합니다."
+                from telegram_sender import send_telegram_message
+                send_telegram_message(msg)
+                self._respond(200, {"status": "skipped", "reason": "weekend"})
+                return
+
+            if today_str in KR_HOLIDAYS:
+                msg = f"📅 *{today_str}*\n오늘은 공휴일입니다. 주식 시장이 휴장합니다."
+                from telegram_sender import send_telegram_message
+                send_telegram_message(msg)
+                self._respond(200, {"status": "skipped", "reason": "holiday"})
+                return
+
             logger.info("=== 한국 주식 일간 분석 시작 ===")
 
             from data_collector  import collect_market_data

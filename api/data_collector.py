@@ -143,6 +143,57 @@ def _calc_ma(closes: list) -> dict:
     return r
 
 
+def _calc_stoch_rsi(closes: list, period: int = 14) -> float:
+    """Stochastic RSI - RSI보다 민감한 과매수/과매도 판단"""
+    if len(closes) < period * 2:
+        return None
+    s = pd.Series(closes)
+    delta = s.diff()
+    gain  = delta.clip(lower=0).rolling(period).mean()
+    loss  = (-delta).clip(lower=0).rolling(period).mean()
+    rs    = gain / loss
+    rsi   = 100 - (100 / (1 + rs))
+    rsi_min = rsi.rolling(period).min()
+    rsi_max = rsi.rolling(period).max()
+    stoch_rsi = (rsi - rsi_min) / (rsi_max - rsi_min)
+    val = stoch_rsi.iloc[-1]
+    return round(float(val) * 100, 1) if not pd.isna(val) else None
+
+
+def _calc_atr(closes: list, period: int = 14) -> float:
+    """ATR (Average True Range) - 변동성 측정"""
+    if len(closes) < period + 1:
+        return None
+    s  = pd.Series(closes)
+    tr = s.diff().abs()  # 간소화 버전 (고가/저가 없을 때)
+    atr = tr.rolling(period).mean().iloc[-1]
+    return round(float(atr), 0) if not pd.isna(atr) else None
+
+
+def _calc_obv(closes: list, volumes: list) -> str:
+    """OBV (On-Balance Volume) - 거래량 기반 추세 확인"""
+    if len(closes) < 5 or len(volumes) < 5:
+        return None
+    s_close = pd.Series(closes)
+    s_vol   = pd.Series(volumes)
+    obv = (s_vol * s_close.diff().apply(lambda x: 1 if x > 0 else (-1 if x < 0 else 0))).cumsum()
+    # 최근 5일 추세
+    recent = obv.iloc[-5:]
+    trend  = "상승" if recent.iloc[-1] > recent.iloc[0] else "하락"
+    return trend
+
+
+def _calc_volume_ratio(volumes: list, period: int = 20) -> float:
+    """거래량 비율 - 평균 대비 오늘 거래량 (급등 신호)"""
+    if len(volumes) < period + 1:
+        return None
+    avg = pd.Series(volumes[:-1]).rolling(period).mean().iloc[-1]
+    if avg == 0:
+        return None
+    ratio = volumes[-1] / avg
+    return round(float(ratio), 2)
+
+
 def _calc_bollinger(closes: list, period: int = 20) -> dict:
     if len(closes) < period:
         return {}
@@ -216,10 +267,14 @@ def collect_kr_stocks(start_time: float) -> dict:
             "prev_close": round(prev, 0),
             "change_pct": round((last - prev) / prev * 100, 2),
             "volume":     int(volumes[-1]) if volumes else 0,
-            "rsi":        _calc_rsi(closes),
-            "macd":       _calc_macd(closes),
-            "ma":         _calc_ma(closes),
-            "bollinger":  _calc_bollinger(closes),
+            "rsi":          _calc_rsi(closes),
+            "stoch_rsi":    _calc_stoch_rsi(closes),
+            "macd":         _calc_macd(closes),
+            "ma":           _calc_ma(closes),
+            "bollinger":    _calc_bollinger(closes),
+            "atr":          _calc_atr(closes),
+            "obv_trend":    _calc_obv(closes, volumes),
+            "volume_ratio": _calc_volume_ratio(volumes),
         }
 
     # 모멘텀 점수 → 상위 15개
@@ -298,19 +353,24 @@ def format_market_data_for_prompt(market_data: dict) -> str:
 
     # 한국 종목 기술적 지표
     lines.append("\n### 한국 주요 종목 (기술적 지표)")
-    lines.append("종목명 | 종가(원) | 등락률 | RSI | MACD히스토 | MA정배열 | 볼린저위치")
-    lines.append("---|---|---|---|---|---|---")
+    lines.append("종목명 | 종가(원) | 등락률 | RSI | StochRSI | MACD히스토 | MA정배열 | 볼린저위치 | ATR | OBV추세 | 거래량비율")
+    lines.append("---|---|---|---|---|---|---|---|---|---|---")
     for name, info in kr_stocks.items():
-        sign   = "+" if info["change_pct"] >= 0 else ""
-        rsi    = info.get("rsi") or "-"
-        hist_v = (info.get("macd") or {}).get("histogram", "-")
-        ma     = info.get("ma") or {}
-        golden = "정배열✓" if ma.get("golden_align") else ("역배열✗" if ma.get("golden_align") is False else "-")
-        bb     = info.get("bollinger") or {}
-        bb_pos = bb.get("band_position", "-")
+        sign      = "+" if info["change_pct"] >= 0 else ""
+        rsi       = info.get("rsi") or "-"
+        stoch_rsi = info.get("stoch_rsi") or "-"
+        hist_v    = (info.get("macd") or {}).get("histogram", "-")
+        ma        = info.get("ma") or {}
+        golden    = "정배열✓" if ma.get("golden_align") else ("역배열✗" if ma.get("golden_align") is False else "-")
+        bb        = info.get("bollinger") or {}
+        bb_pos    = bb.get("band_position", "-")
+        atr       = info.get("atr") or "-"
+        obv       = info.get("obv_trend") or "-"
+        vol_ratio = info.get("volume_ratio") or "-"
         lines.append(
             f"{name} | {int(info['close']):,} | {sign}{info['change_pct']:.2f}%"
-            f" | {rsi} | {hist_v} | {golden} | {bb_pos}"
+            f" | {rsi} | {stoch_rsi} | {hist_v} | {golden} | {bb_pos}"
+            f" | {atr} | {obv} | {vol_ratio}"
         )
 
     return "\n".join(lines)
