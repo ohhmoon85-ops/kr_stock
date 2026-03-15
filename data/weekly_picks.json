@@ -8,46 +8,6 @@
           "ticker": "010140.KS",
           "entry_price": 30700,
           "target_price": 32200,
-          "stop_price": 29800
-        },
-        {
-          "name": "한화오션",
-          "ticker": "009450.KS",
-          "entry_price": 136900,
-          "target_price": 142300,
-          "stop_price": 133000
-        },
-        {
-          "name": "리노공업",
-          "ticker": "058470.KS",
-          "entry_price": 117800,
-          "target_price": 122500,
-          "stop_price": 114000
-        },
-        {
-          "name": "LIG넥스원",
-          "ticker": "079550.KS",
-          "entry_price": 723000,
-          "target_price": 755000,
-          "stop_price": 698000
-        },
-        {
-          "name": "한화에어로스페이스",
-          "ticker": "012450.KS",
-          "entry_price": 1488000,
-          "target_price": 1545000,
-          "stop_price": 1440000
-        }
-      ]
-    },
-    {
-      "date": "2026-03-13",
-      "picks": [
-        {
-          "name": "삼성중공업",
-          "ticker": "010140.KS",
-          "entry_price": 30700,
-          "target_price": 32200,
           "stop_price": 29500
         },
         {
@@ -77,6 +37,46 @@
           "entry_price": 183500,
           "target_price": 192500,
           "stop_price": 175000
+        }
+      ]
+    },
+    {
+      "date": "2026-03-15",
+      "picks": [
+        {
+          "name": "삼성중공업",
+          "ticker": "010140.KS",
+          "entry_price": 30700,
+          "target_price": 32500,
+          "stop_price": 29000
+        },
+        {
+          "name": "HD현대중공업",
+          "ticker": "267250.KS",
+          "entry_price": 596000,
+          "target_price": 626000,
+          "stop_price": 566000
+        },
+        {
+          "name": "DB하이텍",
+          "ticker": "000990.KS",
+          "entry_price": 86500,
+          "target_price": 90800,
+          "stop_price": 82200
+        },
+        {
+          "name": "기아",
+          "ticker": "000270.KS",
+          "entry_price": 164300,
+          "target_price": 172500,
+          "stop_price": 156100
+        },
+        {
+          "name": "한화오션",
+          "ticker": "009540.KS",
+          "entry_price": 136900,
+          "target_price": 143800,
+          "stop_price": 130100
         }
       ]
     }
