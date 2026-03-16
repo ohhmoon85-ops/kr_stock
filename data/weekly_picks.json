@@ -1,46 +1,6 @@
 {
   "history": [
     {
-      "date": "2026-03-13",
-      "picks": [
-        {
-          "name": "삼성중공업",
-          "ticker": "010140.KS",
-          "entry_price": 30700,
-          "target_price": 32200,
-          "stop_price": 29500
-        },
-        {
-          "name": "한화오션",
-          "ticker": "009540.KS",
-          "entry_price": 136900,
-          "target_price": 144000,
-          "stop_price": 130000
-        },
-        {
-          "name": "크래프톤",
-          "ticker": "259960.KS",
-          "entry_price": 244500,
-          "target_price": 256500,
-          "stop_price": 234000
-        },
-        {
-          "name": "HD현대중공업",
-          "ticker": "267250.KS",
-          "entry_price": 596000,
-          "target_price": 623000,
-          "stop_price": 570000
-        },
-        {
-          "name": "삼성전자",
-          "ticker": "005930.KS",
-          "entry_price": 183500,
-          "target_price": 192500,
-          "stop_price": 175000
-        }
-      ]
-    },
-    {
       "date": "2026-03-15",
       "picks": [
         {
@@ -77,6 +37,46 @@
           "entry_price": 136900,
           "target_price": 143800,
           "stop_price": 130100
+        }
+      ]
+    },
+    {
+      "date": "2026-03-16",
+      "picks": [
+        {
+          "name": "HD현대중공업",
+          "ticker": "HDHI",
+          "entry_price": 583000,
+          "target_price": 610000,
+          "stop_price": 560000
+        },
+        {
+          "name": "삼성중공업",
+          "ticker": "SHI",
+          "entry_price": 28750,
+          "target_price": 30500,
+          "stop_price": 27000
+        },
+        {
+          "name": "한화오션",
+          "ticker": "HOS",
+          "entry_price": 131900,
+          "target_price": 137500,
+          "stop_price": 127000
+        },
+        {
+          "name": "리노공업",
+          "ticker": "LINO",
+          "entry_price": 113500,
+          "target_price": 119000,
+          "stop_price": 109000
+        },
+        {
+          "name": "SK하이닉스",
+          "ticker": "SKH",
+          "entry_price": 974000,
+          "target_price": 1025000,
+          "stop_price": 930000
         }
       ]
     }
