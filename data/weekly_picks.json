@@ -1,46 +1,6 @@
 {
   "history": [
     {
-      "date": "2026-03-15",
-      "picks": [
-        {
-          "name": "삼성중공업",
-          "ticker": "010140.KS",
-          "entry_price": 30700,
-          "target_price": 32500,
-          "stop_price": 29000
-        },
-        {
-          "name": "HD현대중공업",
-          "ticker": "267250.KS",
-          "entry_price": 596000,
-          "target_price": 626000,
-          "stop_price": 566000
-        },
-        {
-          "name": "DB하이텍",
-          "ticker": "000990.KS",
-          "entry_price": 86500,
-          "target_price": 90800,
-          "stop_price": 82200
-        },
-        {
-          "name": "기아",
-          "ticker": "000270.KS",
-          "entry_price": 164300,
-          "target_price": 172500,
-          "stop_price": 156100
-        },
-        {
-          "name": "한화오션",
-          "ticker": "009540.KS",
-          "entry_price": 136900,
-          "target_price": 143800,
-          "stop_price": 130100
-        }
-      ]
-    },
-    {
       "date": "2026-03-16",
       "picks": [
         {
@@ -77,6 +37,46 @@
           "entry_price": 974000,
           "target_price": 1025000,
           "stop_price": 930000
+        }
+      ]
+    },
+    {
+      "date": "2026-03-17",
+      "picks": [
+        {
+          "name": "HLB",
+          "ticker": "HLB",
+          "entry_price": 50700,
+          "target_price": 52200,
+          "stop_price": 49190
+        },
+        {
+          "name": "한화오션",
+          "ticker": "한화오션",
+          "entry_price": 132700,
+          "target_price": 136680,
+          "stop_price": 128720
+        },
+        {
+          "name": "삼성전자",
+          "ticker": "005930.KS",
+          "entry_price": 193900,
+          "target_price": 199717,
+          "stop_price": 188083
+        },
+        {
+          "name": "카카오",
+          "ticker": "카카오",
+          "entry_price": 51300,
+          "target_price": 52839,
+          "stop_price": 49761
+        },
+        {
+          "name": "한화솔루션",
+          "ticker": "한화솔루션",
+          "entry_price": 49450,
+          "target_price": 50933,
+          "stop_price": 47966
         }
       ]
     }
