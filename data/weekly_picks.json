@@ -1,46 +1,6 @@
 {
   "history": [
     {
-      "date": "2026-03-16",
-      "picks": [
-        {
-          "name": "HD현대중공업",
-          "ticker": "HDHI",
-          "entry_price": 583000,
-          "target_price": 610000,
-          "stop_price": 560000
-        },
-        {
-          "name": "삼성중공업",
-          "ticker": "SHI",
-          "entry_price": 28750,
-          "target_price": 30500,
-          "stop_price": 27000
-        },
-        {
-          "name": "한화오션",
-          "ticker": "HOS",
-          "entry_price": 131900,
-          "target_price": 137500,
-          "stop_price": 127000
-        },
-        {
-          "name": "리노공업",
-          "ticker": "LINO",
-          "entry_price": 113500,
-          "target_price": 119000,
-          "stop_price": 109000
-        },
-        {
-          "name": "SK하이닉스",
-          "ticker": "SKH",
-          "entry_price": 974000,
-          "target_price": 1025000,
-          "stop_price": 930000
-        }
-      ]
-    },
-    {
       "date": "2026-03-17",
       "picks": [
         {
@@ -77,6 +37,46 @@
           "entry_price": 49450,
           "target_price": 50933,
           "stop_price": 47966
+        }
+      ]
+    },
+    {
+      "date": "2026-03-18",
+      "picks": [
+        {
+          "name": "삼성바이오로직스",
+          "ticker": "207940.KS",
+          "entry_price": 1626000,
+          "target_price": 1694000,
+          "stop_price": 1562000
+        },
+        {
+          "name": "HLB",
+          "ticker": "028300.KS",
+          "entry_price": 51300,
+          "target_price": 53600,
+          "stop_price": 49000
+        },
+        {
+          "name": "HD현대중공업",
+          "ticker": "329180.KS",
+          "entry_price": 590000,
+          "target_price": 615000,
+          "stop_price": 565000
+        },
+        {
+          "name": "삼성전자",
+          "ticker": "005930.KS",
+          "entry_price": 208500,
+          "target_price": 217000,
+          "stop_price": 200000
+        },
+        {
+          "name": "LG에너지솔루션",
+          "ticker": "373220.KS",
+          "entry_price": 383500,
+          "target_price": 399000,
+          "stop_price": 368000
         }
       ]
     }
