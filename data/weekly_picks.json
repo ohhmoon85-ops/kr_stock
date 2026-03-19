@@ -1,46 +1,6 @@
 {
   "history": [
     {
-      "date": "2026-03-17",
-      "picks": [
-        {
-          "name": "HLB",
-          "ticker": "HLB",
-          "entry_price": 50700,
-          "target_price": 52200,
-          "stop_price": 49190
-        },
-        {
-          "name": "한화오션",
-          "ticker": "한화오션",
-          "entry_price": 132700,
-          "target_price": 136680,
-          "stop_price": 128720
-        },
-        {
-          "name": "삼성전자",
-          "ticker": "005930.KS",
-          "entry_price": 193900,
-          "target_price": 199717,
-          "stop_price": 188083
-        },
-        {
-          "name": "카카오",
-          "ticker": "카카오",
-          "entry_price": 51300,
-          "target_price": 52839,
-          "stop_price": 49761
-        },
-        {
-          "name": "한화솔루션",
-          "ticker": "한화솔루션",
-          "entry_price": 49450,
-          "target_price": 50933,
-          "stop_price": 47966
-        }
-      ]
-    },
-    {
       "date": "2026-03-18",
       "picks": [
         {
@@ -77,6 +37,46 @@
           "entry_price": 383500,
           "target_price": 399000,
           "stop_price": 368000
+        }
+      ]
+    },
+    {
+      "date": "2026-03-19",
+      "picks": [
+        {
+          "name": "SK하이닉스",
+          "ticker": "000660.KS",
+          "entry_price": 1013000,
+          "target_price": 1043000,
+          "stop_price": 983000
+        },
+        {
+          "name": "HLB",
+          "ticker": "028300.KS",
+          "entry_price": 50400,
+          "target_price": 51900,
+          "stop_price": 48900
+        },
+        {
+          "name": "크래프톤",
+          "ticker": "259960.KS",
+          "entry_price": 232000,
+          "target_price": 238000,
+          "stop_price": 226000
+        },
+        {
+          "name": "삼성전자",
+          "ticker": "005930.KS",
+          "entry_price": 200500,
+          "target_price": 206500,
+          "stop_price": 194500
+        },
+        {
+          "name": "DB하이텍",
+          "ticker": "000990.KS",
+          "entry_price": 87900,
+          "target_price": 90500,
+          "stop_price": 85300
         }
       ]
     }
