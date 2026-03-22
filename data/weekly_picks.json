@@ -1,46 +1,6 @@
 {
   "history": [
     {
-      "date": "2026-03-18",
-      "picks": [
-        {
-          "name": "삼성바이오로직스",
-          "ticker": "207940.KS",
-          "entry_price": 1626000,
-          "target_price": 1694000,
-          "stop_price": 1562000
-        },
-        {
-          "name": "HLB",
-          "ticker": "028300.KS",
-          "entry_price": 51300,
-          "target_price": 53600,
-          "stop_price": 49000
-        },
-        {
-          "name": "HD현대중공업",
-          "ticker": "329180.KS",
-          "entry_price": 590000,
-          "target_price": 615000,
-          "stop_price": 565000
-        },
-        {
-          "name": "삼성전자",
-          "ticker": "005930.KS",
-          "entry_price": 208500,
-          "target_price": 217000,
-          "stop_price": 200000
-        },
-        {
-          "name": "LG에너지솔루션",
-          "ticker": "373220.KS",
-          "entry_price": 383500,
-          "target_price": 399000,
-          "stop_price": 368000
-        }
-      ]
-    },
-    {
       "date": "2026-03-19",
       "picks": [
         {
@@ -77,6 +37,46 @@
           "entry_price": 87900,
           "target_price": 90500,
           "stop_price": 85300
+        }
+      ]
+    },
+    {
+      "date": "2026-03-22",
+      "picks": [
+        {
+          "name": "SK하이닉스",
+          "ticker": "000660.KS",
+          "entry_price": 1007000,
+          "target_price": 1057000,
+          "stop_price": 956650
+        },
+        {
+          "name": "LG에너지솔루션",
+          "ticker": "373220.KS",
+          "entry_price": 375500,
+          "target_price": 393275,
+          "stop_price": 356725
+        },
+        {
+          "name": "삼성바이오로직스",
+          "ticker": "207940.KS",
+          "entry_price": 1601000,
+          "target_price": 1681050,
+          "stop_price": 1520950
+        },
+        {
+          "name": "DB하이텍",
+          "ticker": "000990.KS",
+          "entry_price": 88100,
+          "target_price": 92505,
+          "stop_price": 83695
+        },
+        {
+          "name": "NAVER",
+          "ticker": "035420.KS",
+          "entry_price": 221500,
+          "target_price": 232575,
+          "stop_price": 210425
         }
       ]
     }
