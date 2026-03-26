@@ -1,46 +1,6 @@
 {
   "history": [
     {
-      "date": "2026-03-23",
-      "picks": [
-        {
-          "name": "HLB",
-          "ticker": "028300.KS",
-          "entry_price": 48750,
-          "target_price": 50200,
-          "stop_price": 47800
-        },
-        {
-          "name": "리노공업",
-          "ticker": "058470.KS",
-          "entry_price": 106100,
-          "target_price": 109300,
-          "stop_price": 103300
-        },
-        {
-          "name": "삼성전자",
-          "ticker": "005930.KS",
-          "entry_price": 186300,
-          "target_price": 191900,
-          "stop_price": 182600
-        },
-        {
-          "name": "SK하이닉스",
-          "ticker": "000660.KS",
-          "entry_price": 933000,
-          "target_price": 961000,
-          "stop_price": 914300
-        },
-        {
-          "name": "DB하이텍",
-          "ticker": "000990.KS",
-          "entry_price": 83500,
-          "target_price": 86000,
-          "stop_price": 81800
-        }
-      ]
-    },
-    {
       "date": "2026-03-25",
       "picks": [
         {
@@ -77,6 +37,46 @@
           "entry_price": 394000,
           "target_price": 410000,
           "stop_price": 385000
+        }
+      ]
+    },
+    {
+      "date": "2026-03-26",
+      "picks": [
+        {
+          "name": "SK하이닉스",
+          "ticker": "000660.KS",
+          "entry_price": 933000,
+          "target_price": 955000,
+          "stop_price": 910000
+        },
+        {
+          "name": "에코프로비엠",
+          "ticker": "247540.KS",
+          "entry_price": 198900,
+          "target_price": 204000,
+          "stop_price": 194000
+        },
+        {
+          "name": "삼성바이오로직스",
+          "ticker": "207940.KS",
+          "entry_price": 1585000,
+          "target_price": 1625000,
+          "stop_price": 1545000
+        },
+        {
+          "name": "LG화학",
+          "ticker": "051910.KS",
+          "entry_price": 314000,
+          "target_price": 322000,
+          "stop_price": 306000
+        },
+        {
+          "name": "현대차",
+          "ticker": "005380.KS",
+          "entry_price": 490000,
+          "target_price": 502000,
+          "stop_price": 478000
         }
       ]
     }
