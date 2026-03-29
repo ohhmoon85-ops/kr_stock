@@ -1,46 +1,6 @@
 {
   "history": [
     {
-      "date": "2026-03-25",
-      "picks": [
-        {
-          "name": "에코프로비엠",
-          "ticker": "247540.KS",
-          "entry_price": 203000,
-          "target_price": 212000,
-          "stop_price": 197000
-        },
-        {
-          "name": "크래프톤",
-          "ticker": "259960.KS",
-          "entry_price": 240500,
-          "target_price": 250500,
-          "stop_price": 235000
-        },
-        {
-          "name": "삼성바이오로직스",
-          "ticker": "207940.KS",
-          "entry_price": 1585000,
-          "target_price": 1650000,
-          "stop_price": 1550000
-        },
-        {
-          "name": "SK하이닉스",
-          "ticker": "000660.KS",
-          "entry_price": 995000,
-          "target_price": 1040000,
-          "stop_price": 975000
-        },
-        {
-          "name": "LG에너지솔루션",
-          "ticker": "373220.KS",
-          "entry_price": 394000,
-          "target_price": 410000,
-          "stop_price": 385000
-        }
-      ]
-    },
-    {
       "date": "2026-03-26",
       "picks": [
         {
@@ -77,6 +37,46 @@
           "entry_price": 490000,
           "target_price": 502000,
           "stop_price": 478000
+        }
+      ]
+    },
+    {
+      "date": "2026-03-29",
+      "picks": [
+        {
+          "name": "에코프로비엠",
+          "ticker": "247540.KS",
+          "entry_price": 202500,
+          "target_price": 210000,
+          "stop_price": 196000
+        },
+        {
+          "name": "포스코퓨처엠",
+          "ticker": "003670.KS",
+          "entry_price": 209000,
+          "target_price": 217000,
+          "stop_price": 202000
+        },
+        {
+          "name": "LG에너지솔루션",
+          "ticker": "373220.KS",
+          "entry_price": 394500,
+          "target_price": 410000,
+          "stop_price": 380000
+        },
+        {
+          "name": "신한지주",
+          "ticker": "055550.KS",
+          "entry_price": 93500,
+          "target_price": 97000,
+          "stop_price": 90000
+        },
+        {
+          "name": "KB금융",
+          "ticker": "105560.KS",
+          "entry_price": 152200,
+          "target_price": 158000,
+          "stop_price": 147000
         }
       ]
     }
