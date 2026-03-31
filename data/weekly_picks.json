@@ -1,46 +1,6 @@
 {
   "history": [
     {
-      "date": "2026-03-29",
-      "picks": [
-        {
-          "name": "에코프로비엠",
-          "ticker": "247540.KS",
-          "entry_price": 202500,
-          "target_price": 210000,
-          "stop_price": 196000
-        },
-        {
-          "name": "포스코퓨처엠",
-          "ticker": "003670.KS",
-          "entry_price": 209000,
-          "target_price": 217000,
-          "stop_price": 202000
-        },
-        {
-          "name": "LG에너지솔루션",
-          "ticker": "373220.KS",
-          "entry_price": 394500,
-          "target_price": 410000,
-          "stop_price": 380000
-        },
-        {
-          "name": "신한지주",
-          "ticker": "055550.KS",
-          "entry_price": 93500,
-          "target_price": 97000,
-          "stop_price": 90000
-        },
-        {
-          "name": "KB금융",
-          "ticker": "105560.KS",
-          "entry_price": 152200,
-          "target_price": 158000,
-          "stop_price": 147000
-        }
-      ]
-    },
-    {
       "date": "2026-03-30",
       "picks": [
         {
@@ -77,6 +37,46 @@
           "entry_price": 412500,
           "target_price": 428000,
           "stop_price": 396000
+        }
+      ]
+    },
+    {
+      "date": "2026-03-31",
+      "picks": [
+        {
+          "name": "HLB",
+          "ticker": "HLB",
+          "entry_price": 50600,
+          "target_price": 53130,
+          "stop_price": 48070
+        },
+        {
+          "name": "에코프로비엠",
+          "ticker": "ECOPROBM",
+          "entry_price": 192200,
+          "target_price": 201810,
+          "stop_price": 182590
+        },
+        {
+          "name": "LG에너지솔루션",
+          "ticker": "LGES",
+          "entry_price": 394500,
+          "target_price": 414225,
+          "stop_price": 374775
+        },
+        {
+          "name": "포스코퓨처엠",
+          "ticker": "POSCOFM",
+          "entry_price": 203500,
+          "target_price": 213675,
+          "stop_price": 193325
+        },
+        {
+          "name": "크래프톤",
+          "ticker": "KRAFTON",
+          "entry_price": 255000,
+          "target_price": 267750,
+          "stop_price": 242250
         }
       ]
     }
