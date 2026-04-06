@@ -1,46 +1,6 @@
 {
   "history": [
     {
-      "date": "2026-04-01",
-      "picks": [
-        {
-          "name": "삼성SDI",
-          "ticker": "006400.KS",
-          "entry_price": 432000,
-          "target_price": 464640,
-          "stop_price": 409920
-        },
-        {
-          "name": "에코프로비엠",
-          "ticker": "247540.KS",
-          "entry_price": 202000,
-          "target_price": 214120,
-          "stop_price": 191920
-        },
-        {
-          "name": "HLB",
-          "ticker": "028300.KS",
-          "entry_price": 53100,
-          "target_price": 56796,
-          "stop_price": 50445
-        },
-        {
-          "name": "셀트리온",
-          "ticker": "068270.KS",
-          "entry_price": 206000,
-          "target_price": 219420,
-          "stop_price": 195700
-        },
-        {
-          "name": "포스코퓨처엠",
-          "ticker": "003670.KS",
-          "entry_price": 212500,
-          "target_price": 225250,
-          "stop_price": 201875
-        }
-      ]
-    },
-    {
       "date": "2026-04-05",
       "picks": [
         {
@@ -77,6 +37,46 @@
           "entry_price": 186200,
           "target_price": 199000,
           "stop_price": 180000
+        }
+      ]
+    },
+    {
+      "date": "2026-04-06",
+      "picks": [
+        {
+          "name": "에코프로비엠",
+          "ticker": "247540.KS",
+          "entry_price": 199900,
+          "target_price": 207900,
+          "stop_price": 191900
+        },
+        {
+          "name": "하나금융지주",
+          "ticker": "086790.KS",
+          "entry_price": 112400,
+          "target_price": 116900,
+          "stop_price": 107900
+        },
+        {
+          "name": "LG화학",
+          "ticker": "051910.KS",
+          "entry_price": 317000,
+          "target_price": 329700,
+          "stop_price": 304300
+        },
+        {
+          "name": "포스코퓨처엠",
+          "ticker": "003670.KS",
+          "entry_price": 211000,
+          "target_price": 219440,
+          "stop_price": 202560
+        },
+        {
+          "name": "삼성SDI",
+          "ticker": "006400.KS",
+          "entry_price": 453500,
+          "target_price": 471640,
+          "stop_price": 435360
         }
       ]
     }
