@@ -1,46 +1,6 @@
 {
   "history": [
     {
-      "date": "2026-04-07",
-      "picks": [
-        {
-          "name": "LIG넥스원",
-          "ticker": "079550.KS",
-          "entry_price": 827000,
-          "target_price": 860000,
-          "stop_price": 790000
-        },
-        {
-          "name": "한화에어로스페이스",
-          "ticker": "012450.KS",
-          "entry_price": 1537000,
-          "target_price": 1600000,
-          "stop_price": 1475000
-        },
-        {
-          "name": "삼성전자",
-          "ticker": "005930.KS",
-          "entry_price": 196500,
-          "target_price": 205000,
-          "stop_price": 188000
-        },
-        {
-          "name": "삼성SDI",
-          "ticker": "006400.KS",
-          "entry_price": 456500,
-          "target_price": 475000,
-          "stop_price": 438000
-        },
-        {
-          "name": "에코프로비엠",
-          "ticker": "247540.KS",
-          "entry_price": 201500,
-          "target_price": 210000,
-          "stop_price": 193000
-        }
-      ]
-    },
-    {
       "date": "2026-04-08",
       "picks": [
         {
@@ -77,6 +37,46 @@
           "entry_price": 833000,
           "target_price": 870000,
           "stop_price": 797000
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "picks": [
+        {
+          "name": "삼성전자",
+          "ticker": "005930.KS",
+          "entry_price": 204000,
+          "target_price": 210000,
+          "stop_price": 198000
+        },
+        {
+          "name": "SK하이닉스",
+          "ticker": "000660.KS",
+          "entry_price": 998000,
+          "target_price": 1028000,
+          "stop_price": 968000
+        },
+        {
+          "name": "에코프로비엠",
+          "ticker": "247540.KS",
+          "entry_price": 206000,
+          "target_price": 212000,
+          "stop_price": 200000
+        },
+        {
+          "name": "삼성SDI",
+          "ticker": "006400.KS",
+          "entry_price": 480000,
+          "target_price": 495000,
+          "stop_price": 465000
+        },
+        {
+          "name": "LIG넥스원",
+          "ticker": "079550.KS",
+          "entry_price": 887000,
+          "target_price": 914000,
+          "stop_price": 860000
         }
       ]
     }
