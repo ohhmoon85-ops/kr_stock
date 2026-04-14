@@ -1,46 +1,6 @@
 {
   "history": [
     {
-      "date": "2026-04-12",
-      "picks": [
-        {
-          "name": "삼성전자",
-          "ticker": "005930.KS",
-          "entry_price": 206000,
-          "target_price": 212000,
-          "stop_price": 201000
-        },
-        {
-          "name": "SK하이닉스",
-          "ticker": "000660.KS",
-          "entry_price": 1027000,
-          "target_price": 1058000,
-          "stop_price": 1000000
-        },
-        {
-          "name": "KB금융",
-          "ticker": "105560.KS",
-          "entry_price": 158300,
-          "target_price": 163000,
-          "stop_price": 154000
-        },
-        {
-          "name": "LIG넥스원",
-          "ticker": "079550.KS",
-          "entry_price": 921000,
-          "target_price": 948000,
-          "stop_price": 895000
-        },
-        {
-          "name": "DB하이텍",
-          "ticker": "000990.KS",
-          "entry_price": 94800,
-          "target_price": 97600,
-          "stop_price": 92000
-        }
-      ]
-    },
-    {
       "date": "2026-04-13",
       "picks": [
         {
@@ -77,6 +37,46 @@
           "entry_price": 98300,
           "target_price": 100266,
           "stop_price": 96334
+        }
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "picks": [
+        {
+          "name": "SK하이닉스",
+          "ticker": "000660.KS",
+          "entry_price": 1103000,
+          "target_price": 1159000,
+          "stop_price": 1055000
+        },
+        {
+          "name": "삼성전자",
+          "ticker": "005930.KS",
+          "entry_price": 206500,
+          "target_price": 216000,
+          "stop_price": 199000
+        },
+        {
+          "name": "한화에어로스페이스",
+          "ticker": "012450.KS",
+          "entry_price": 1523000,
+          "target_price": 1590000,
+          "stop_price": 1460000
+        },
+        {
+          "name": "KB금융",
+          "ticker": "105560.KS",
+          "entry_price": 155900,
+          "target_price": 162500,
+          "stop_price": 149500
+        },
+        {
+          "name": "신한지주",
+          "ticker": "055550.KS",
+          "entry_price": 98300,
+          "target_price": 102500,
+          "stop_price": 94200
         }
       ]
     }
