@@ -1,46 +1,6 @@
 {
   "history": [
     {
-      "date": "2026-04-19",
-      "picks": [
-        {
-          "name": "리노공업",
-          "ticker": "058470.KS",
-          "entry_price": 115300,
-          "target_price": 120000,
-          "stop_price": 112000
-        },
-        {
-          "name": "LG에너지솔루션",
-          "ticker": "373220.KS",
-          "entry_price": 418000,
-          "target_price": 435000,
-          "stop_price": 405000
-        },
-        {
-          "name": "크래프톤",
-          "ticker": "259960.KS",
-          "entry_price": 263500,
-          "target_price": 275000,
-          "stop_price": 255000
-        },
-        {
-          "name": "삼성전자",
-          "ticker": "005930.KS",
-          "entry_price": 216000,
-          "target_price": 225000,
-          "stop_price": 208000
-        },
-        {
-          "name": "삼성SDI",
-          "ticker": "006400.KS",
-          "entry_price": 513000,
-          "target_price": 534000,
-          "stop_price": 495000
-        }
-      ]
-    },
-    {
       "date": "2026-04-20",
       "picks": [
         {
@@ -77,6 +37,46 @@
           "entry_price": 116600,
           "target_price": 123000,
           "stop_price": 110000
+        }
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "picks": [
+        {
+          "name": "리노공업",
+          "ticker": "058470.KS",
+          "entry_price": 118500,
+          "target_price": 124000,
+          "stop_price": 115000
+        },
+        {
+          "name": "카카오",
+          "ticker": "035720.KS",
+          "entry_price": 48950,
+          "target_price": 51000,
+          "stop_price": 47000
+        },
+        {
+          "name": "크래프톤",
+          "ticker": "259960.KS",
+          "entry_price": 255000,
+          "target_price": 266000,
+          "stop_price": 245000
+        },
+        {
+          "name": "한화오션",
+          "ticker": "042660.KS",
+          "entry_price": 131200,
+          "target_price": 137000,
+          "stop_price": 127000
+        },
+        {
+          "name": "기아",
+          "ticker": "000270.KS",
+          "entry_price": 160000,
+          "target_price": 166000,
+          "stop_price": 155000
         }
       ]
     }
