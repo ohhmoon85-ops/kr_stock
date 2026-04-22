@@ -1,46 +1,6 @@
 {
   "history": [
     {
-      "date": "2026-04-20",
-      "picks": [
-        {
-          "name": "크래프톤",
-          "ticker": "259960.KS",
-          "entry_price": 261500,
-          "target_price": 273000,
-          "stop_price": 250000
-        },
-        {
-          "name": "카카오",
-          "ticker": "035720.KS",
-          "entry_price": 48850,
-          "target_price": 51500,
-          "stop_price": 46300
-        },
-        {
-          "name": "삼성SDI",
-          "ticker": "006400.KS",
-          "entry_price": 538000,
-          "target_price": 570000,
-          "stop_price": 510000
-        },
-        {
-          "name": "LG에너지솔루션",
-          "ticker": "373220.KS",
-          "entry_price": 429000,
-          "target_price": 450000,
-          "stop_price": 410000
-        },
-        {
-          "name": "리노공업",
-          "ticker": "058470.KS",
-          "entry_price": 116600,
-          "target_price": 123000,
-          "stop_price": 110000
-        }
-      ]
-    },
-    {
       "date": "2026-04-21",
       "picks": [
         {
@@ -77,6 +37,46 @@
           "entry_price": 160000,
           "target_price": 166000,
           "stop_price": 155000
+        }
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "picks": [
+        {
+          "name": "크래프톤",
+          "ticker": "259960.KS",
+          "entry_price": 265500,
+          "target_price": 278000,
+          "stop_price": 255000
+        },
+        {
+          "name": "LIG넥스원",
+          "ticker": "079550.KS",
+          "entry_price": 1020000,
+          "target_price": 1100000,
+          "stop_price": 980000
+        },
+        {
+          "name": "삼성SDI",
+          "ticker": "006400.KS",
+          "entry_price": 659000,
+          "target_price": 690000,
+          "stop_price": 630000
+        },
+        {
+          "name": "DB하이텍",
+          "ticker": "000990.KS",
+          "entry_price": 127900,
+          "target_price": 136000,
+          "stop_price": 122000
+        },
+        {
+          "name": "리노공업",
+          "ticker": "058470.KS",
+          "entry_price": 120200,
+          "target_price": 126800,
+          "stop_price": 115000
         }
       ]
     }
