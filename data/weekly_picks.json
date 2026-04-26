@@ -1,46 +1,6 @@
 {
   "history": [
     {
-      "date": "2026-04-22",
-      "picks": [
-        {
-          "name": "크래프톤",
-          "ticker": "259960.KS",
-          "entry_price": 265500,
-          "target_price": 278000,
-          "stop_price": 255000
-        },
-        {
-          "name": "LIG넥스원",
-          "ticker": "079550.KS",
-          "entry_price": 1020000,
-          "target_price": 1100000,
-          "stop_price": 980000
-        },
-        {
-          "name": "삼성SDI",
-          "ticker": "006400.KS",
-          "entry_price": 659000,
-          "target_price": 690000,
-          "stop_price": 630000
-        },
-        {
-          "name": "DB하이텍",
-          "ticker": "000990.KS",
-          "entry_price": 127900,
-          "target_price": 136000,
-          "stop_price": 122000
-        },
-        {
-          "name": "리노공업",
-          "ticker": "058470.KS",
-          "entry_price": 120200,
-          "target_price": 126800,
-          "stop_price": 115000
-        }
-      ]
-    },
-    {
       "date": "2026-04-23",
       "picks": [
         {
@@ -77,6 +37,46 @@
           "entry_price": 120900,
           "target_price": 126945,
           "stop_price": 114855
+        }
+      ]
+    },
+    {
+      "date": "2026-04-26",
+      "picks": [
+        {
+          "name": "현대로템",
+          "ticker": "KOR:현대로템",
+          "entry_price": 233000,
+          "target_price": 245000,
+          "stop_price": 222350
+        },
+        {
+          "name": "삼성SDI",
+          "ticker": "KOR:삼성SDI",
+          "entry_price": 641000,
+          "target_price": 673000,
+          "stop_price": 616000
+        },
+        {
+          "name": "리노공업",
+          "ticker": "KOR:리노공업",
+          "entry_price": 124400,
+          "target_price": 130620,
+          "stop_price": 119420
+        },
+        {
+          "name": "하나금융지주",
+          "ticker": "KOR:하나금융지주",
+          "entry_price": 123300,
+          "target_price": 129465,
+          "stop_price": 118368
+        },
+        {
+          "name": "LG에너지솔루션",
+          "ticker": "KOR:LG에너지솔루션",
+          "entry_price": 481000,
+          "target_price": 505050,
+          "stop_price": 462760
         }
       ]
     }
