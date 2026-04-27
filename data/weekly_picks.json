@@ -1,46 +1,6 @@
 {
   "history": [
     {
-      "date": "2026-04-23",
-      "picks": [
-        {
-          "name": "LIG넥스원",
-          "ticker": "LIG",
-          "entry_price": 966000,
-          "target_price": 1014300,
-          "stop_price": 917700
-        },
-        {
-          "name": "리노공업",
-          "ticker": "LINO",
-          "entry_price": 123300,
-          "target_price": 129465,
-          "stop_price": 117135
-        },
-        {
-          "name": "삼성SDI",
-          "ticker": "SDI",
-          "entry_price": 630000,
-          "target_price": 661500,
-          "stop_price": 598500
-        },
-        {
-          "name": "신한지주",
-          "ticker": "SHINHAN",
-          "entry_price": 99900,
-          "target_price": 104895,
-          "stop_price": 94905
-        },
-        {
-          "name": "하나금융지주",
-          "ticker": "HANA",
-          "entry_price": 120900,
-          "target_price": 126945,
-          "stop_price": 114855
-        }
-      ]
-    },
-    {
       "date": "2026-04-26",
       "picks": [
         {
@@ -77,6 +37,46 @@
           "entry_price": 481000,
           "target_price": 505050,
           "stop_price": 462760
+        }
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "picks": [
+        {
+          "name": "리노공업",
+          "ticker": "058470.KS",
+          "entry_price": 109800,
+          "target_price": 115300,
+          "stop_price": 104300
+        },
+        {
+          "name": "LIG넥스원",
+          "ticker": "079550.KS",
+          "entry_price": 950000,
+          "target_price": 997500,
+          "stop_price": 902500
+        },
+        {
+          "name": "카카오",
+          "ticker": "035720.KS",
+          "entry_price": 48450,
+          "target_price": 50870,
+          "stop_price": 46030
+        },
+        {
+          "name": "현대로템",
+          "ticker": "064350.KS",
+          "entry_price": 231000,
+          "target_price": 242550,
+          "stop_price": 219450
+        },
+        {
+          "name": "HLB",
+          "ticker": "028300.KS",
+          "entry_price": 61900,
+          "target_price": 64995,
+          "stop_price": 58805
         }
       ]
     }
