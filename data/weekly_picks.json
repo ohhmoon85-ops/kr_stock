@@ -1,46 +1,6 @@
 {
   "history": [
     {
-      "date": "2026-04-26",
-      "picks": [
-        {
-          "name": "현대로템",
-          "ticker": "KOR:현대로템",
-          "entry_price": 233000,
-          "target_price": 245000,
-          "stop_price": 222350
-        },
-        {
-          "name": "삼성SDI",
-          "ticker": "KOR:삼성SDI",
-          "entry_price": 641000,
-          "target_price": 673000,
-          "stop_price": 616000
-        },
-        {
-          "name": "리노공업",
-          "ticker": "KOR:리노공업",
-          "entry_price": 124400,
-          "target_price": 130620,
-          "stop_price": 119420
-        },
-        {
-          "name": "하나금융지주",
-          "ticker": "KOR:하나금융지주",
-          "entry_price": 123300,
-          "target_price": 129465,
-          "stop_price": 118368
-        },
-        {
-          "name": "LG에너지솔루션",
-          "ticker": "KOR:LG에너지솔루션",
-          "entry_price": 481000,
-          "target_price": 505050,
-          "stop_price": 462760
-        }
-      ]
-    },
-    {
       "date": "2026-04-27",
       "picks": [
         {
@@ -77,6 +37,46 @@
           "entry_price": 61900,
           "target_price": 64995,
           "stop_price": 58805
+        }
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "picks": [
+        {
+          "name": "에코프로비엠",
+          "ticker": "247540.KS",
+          "entry_price": 213500,
+          "target_price": 225000,
+          "stop_price": 205000
+        },
+        {
+          "name": "리노공업",
+          "ticker": "058470.KS",
+          "entry_price": 111400,
+          "target_price": 116000,
+          "stop_price": 108000
+        },
+        {
+          "name": "기아",
+          "ticker": "000270.KS",
+          "entry_price": 155600,
+          "target_price": 162000,
+          "stop_price": 150000
+        },
+        {
+          "name": "삼성전자",
+          "ticker": "005930.KS",
+          "entry_price": 222000,
+          "target_price": 230000,
+          "stop_price": 215000
+        },
+        {
+          "name": "포스코퓨처엠",
+          "ticker": "003670.KS",
+          "entry_price": 263000,
+          "target_price": 275000,
+          "stop_price": 255000
         }
       ]
     }
