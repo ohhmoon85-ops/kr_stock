@@ -1,46 +1,6 @@
 {
   "history": [
     {
-      "date": "2026-05-03",
-      "picks": [
-        {
-          "name": "삼성전자",
-          "ticker": "005930.KS",
-          "entry_price": 220500,
-          "target_price": 227000,
-          "stop_price": 215000
-        },
-        {
-          "name": "LG에너지솔루션",
-          "ticker": "373220.KS",
-          "entry_price": 460500,
-          "target_price": 475000,
-          "stop_price": 450000
-        },
-        {
-          "name": "리노공업",
-          "ticker": "058470.KS",
-          "entry_price": 119300,
-          "target_price": 124000,
-          "stop_price": 115000
-        },
-        {
-          "name": "하나금융지주",
-          "ticker": "086790.KS",
-          "entry_price": 127900,
-          "target_price": 132000,
-          "stop_price": 124000
-        },
-        {
-          "name": "카카오",
-          "ticker": "035720.KS",
-          "entry_price": 47300,
-          "target_price": 49000,
-          "stop_price": 46000
-        }
-      ]
-    },
-    {
       "date": "2026-05-05",
       "picks": [
         {
@@ -77,6 +37,46 @@
           "entry_price": 232500,
           "target_price": 240000,
           "stop_price": 226000
+        }
+      ]
+    },
+    {
+      "date": "2026-05-06",
+      "picks": [
+        {
+          "name": "현대차",
+          "ticker": "005380.KS",
+          "entry_price": 550000,
+          "target_price": 583000,
+          "stop_price": 522500
+        },
+        {
+          "name": "기아",
+          "ticker": "000270.KS",
+          "entry_price": 154600,
+          "target_price": 162330,
+          "stop_price": 146870
+        },
+        {
+          "name": "포스코퓨처엠",
+          "ticker": "003670.KS",
+          "entry_price": 288500,
+          "target_price": 302925,
+          "stop_price": 274075
+        },
+        {
+          "name": "리노공업",
+          "ticker": "058470.KS",
+          "entry_price": 116700,
+          "target_price": 122535,
+          "stop_price": 110865
+        },
+        {
+          "name": "하나금융지주",
+          "ticker": "086790.KS",
+          "entry_price": 125500,
+          "target_price": 131775,
+          "stop_price": 119225
         }
       ]
     }
