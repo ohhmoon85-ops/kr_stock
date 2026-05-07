@@ -1,46 +1,6 @@
 {
   "history": [
     {
-      "date": "2026-05-05",
-      "picks": [
-        {
-          "name": "리노공업",
-          "ticker": "058470.KS",
-          "entry_price": 120800,
-          "target_price": 125000,
-          "stop_price": 117500
-        },
-        {
-          "name": "에코프로비엠",
-          "ticker": "247540.KS",
-          "entry_price": 215500,
-          "target_price": 223000,
-          "stop_price": 210000
-        },
-        {
-          "name": "현대차",
-          "ticker": "005380.KS",
-          "entry_price": 539000,
-          "target_price": 556000,
-          "stop_price": 525000
-        },
-        {
-          "name": "기아",
-          "ticker": "000270.KS",
-          "entry_price": 154000,
-          "target_price": 159500,
-          "stop_price": 150000
-        },
-        {
-          "name": "삼성전자",
-          "ticker": "005930.KS",
-          "entry_price": 232500,
-          "target_price": 240000,
-          "stop_price": 226000
-        }
-      ]
-    },
-    {
       "date": "2026-05-06",
       "picks": [
         {
@@ -77,6 +37,46 @@
           "entry_price": 125500,
           "target_price": 131775,
           "stop_price": 119225
+        }
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "picks": [
+        {
+          "name": "현대로템",
+          "ticker": "000880.KS",
+          "entry_price": 235000,
+          "target_price": 246750,
+          "stop_price": 223250
+        },
+        {
+          "name": "현대모비스",
+          "ticker": "012330.KS",
+          "entry_price": 441500,
+          "target_price": 463575,
+          "stop_price": 419425
+        },
+        {
+          "name": "기아",
+          "ticker": "000270.KS",
+          "entry_price": 157600,
+          "target_price": 165480,
+          "stop_price": 149720
+        },
+        {
+          "name": "셀트리온",
+          "ticker": "068270.KS",
+          "entry_price": 202500,
+          "target_price": 212625,
+          "stop_price": 192375
+        },
+        {
+          "name": "삼성중공업",
+          "ticker": "010140.KS",
+          "entry_price": 33700,
+          "target_price": 35385,
+          "stop_price": 31985
         }
       ]
     }
