@@ -1,46 +1,6 @@
 {
   "history": [
     {
-      "date": "2026-05-06",
-      "picks": [
-        {
-          "name": "현대차",
-          "ticker": "005380.KS",
-          "entry_price": 550000,
-          "target_price": 583000,
-          "stop_price": 522500
-        },
-        {
-          "name": "기아",
-          "ticker": "000270.KS",
-          "entry_price": 154600,
-          "target_price": 162330,
-          "stop_price": 146870
-        },
-        {
-          "name": "포스코퓨처엠",
-          "ticker": "003670.KS",
-          "entry_price": 288500,
-          "target_price": 302925,
-          "stop_price": 274075
-        },
-        {
-          "name": "리노공업",
-          "ticker": "058470.KS",
-          "entry_price": 116700,
-          "target_price": 122535,
-          "stop_price": 110865
-        },
-        {
-          "name": "하나금융지주",
-          "ticker": "086790.KS",
-          "entry_price": 125500,
-          "target_price": 131775,
-          "stop_price": 119225
-        }
-      ]
-    },
-    {
       "date": "2026-05-07",
       "picks": [
         {
@@ -77,6 +37,46 @@
           "entry_price": 33700,
           "target_price": 35385,
           "stop_price": 31985
+        }
+      ]
+    },
+    {
+      "date": "2026-05-10",
+      "picks": [
+        {
+          "name": "삼성중공업",
+          "ticker": "010140.KS",
+          "entry_price": 31950,
+          "target_price": 33550,
+          "stop_price": 30350
+        },
+        {
+          "name": "기아",
+          "ticker": "000270.KS",
+          "entry_price": 164500,
+          "target_price": 172725,
+          "stop_price": 156275
+        },
+        {
+          "name": "크래프톤",
+          "ticker": "259960.KS",
+          "entry_price": 273000,
+          "target_price": 286650,
+          "stop_price": 259350
+        },
+        {
+          "name": "현대차",
+          "ticker": "005380.KS",
+          "entry_price": 613000,
+          "target_price": 643650,
+          "stop_price": 582350
+        },
+        {
+          "name": "현대모비스",
+          "ticker": "012330.KS",
+          "entry_price": 509000,
+          "target_price": 534450,
+          "stop_price": 483550
         }
       ]
     }
