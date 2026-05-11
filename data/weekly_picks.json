@@ -1,46 +1,6 @@
 {
   "history": [
     {
-      "date": "2026-05-07",
-      "picks": [
-        {
-          "name": "현대로템",
-          "ticker": "000880.KS",
-          "entry_price": 235000,
-          "target_price": 246750,
-          "stop_price": 223250
-        },
-        {
-          "name": "현대모비스",
-          "ticker": "012330.KS",
-          "entry_price": 441500,
-          "target_price": 463575,
-          "stop_price": 419425
-        },
-        {
-          "name": "기아",
-          "ticker": "000270.KS",
-          "entry_price": 157600,
-          "target_price": 165480,
-          "stop_price": 149720
-        },
-        {
-          "name": "셀트리온",
-          "ticker": "068270.KS",
-          "entry_price": 202500,
-          "target_price": 212625,
-          "stop_price": 192375
-        },
-        {
-          "name": "삼성중공업",
-          "ticker": "010140.KS",
-          "entry_price": 33700,
-          "target_price": 35385,
-          "stop_price": 31985
-        }
-      ]
-    },
-    {
       "date": "2026-05-10",
       "picks": [
         {
@@ -77,6 +37,46 @@
           "entry_price": 509000,
           "target_price": 534450,
           "stop_price": 483550
+        }
+      ]
+    },
+    {
+      "date": "2026-05-11",
+      "picks": [
+        {
+          "name": "삼성중공업",
+          "ticker": "010140.KS",
+          "entry_price": 33950,
+          "target_price": 35300,
+          "stop_price": 32600
+        },
+        {
+          "name": "크래프톤",
+          "ticker": "259960.KS",
+          "entry_price": 284500,
+          "target_price": 296880,
+          "stop_price": 273920
+        },
+        {
+          "name": "기아",
+          "ticker": "000270.KS",
+          "entry_price": 174700,
+          "target_price": 181700,
+          "stop_price": 167700
+        },
+        {
+          "name": "NAVER",
+          "ticker": "035420.KS",
+          "entry_price": 211500,
+          "target_price": 220960,
+          "stop_price": 202040
+        },
+        {
+          "name": "한화오션",
+          "ticker": "009540.KS",
+          "entry_price": 130500,
+          "target_price": 135720,
+          "stop_price": 125280
         }
       ]
     }
