@@ -1,46 +1,6 @@
 {
   "history": [
     {
-      "date": "2026-05-10",
-      "picks": [
-        {
-          "name": "삼성중공업",
-          "ticker": "010140.KS",
-          "entry_price": 31950,
-          "target_price": 33550,
-          "stop_price": 30350
-        },
-        {
-          "name": "기아",
-          "ticker": "000270.KS",
-          "entry_price": 164500,
-          "target_price": 172725,
-          "stop_price": 156275
-        },
-        {
-          "name": "크래프톤",
-          "ticker": "259960.KS",
-          "entry_price": 273000,
-          "target_price": 286650,
-          "stop_price": 259350
-        },
-        {
-          "name": "현대차",
-          "ticker": "005380.KS",
-          "entry_price": 613000,
-          "target_price": 643650,
-          "stop_price": 582350
-        },
-        {
-          "name": "현대모비스",
-          "ticker": "012330.KS",
-          "entry_price": 509000,
-          "target_price": 534450,
-          "stop_price": 483550
-        }
-      ]
-    },
-    {
       "date": "2026-05-11",
       "picks": [
         {
@@ -77,6 +37,46 @@
           "entry_price": 130500,
           "target_price": 135720,
           "stop_price": 125280
+        }
+      ]
+    },
+    {
+      "date": "2026-05-12",
+      "picks": [
+        {
+          "name": "기아",
+          "ticker": "000270.KS",
+          "entry_price": 168300,
+          "target_price": 175000,
+          "stop_price": 161600
+        },
+        {
+          "name": "삼성전자",
+          "ticker": "005930.KS",
+          "entry_price": 279000,
+          "target_price": 290160,
+          "stop_price": 267840
+        },
+        {
+          "name": "현대모비스",
+          "ticker": "012330.KS",
+          "entry_price": 548000,
+          "target_price": 570920,
+          "stop_price": 526080
+        },
+        {
+          "name": "에코프로비엠",
+          "ticker": "247540.KS",
+          "entry_price": 205500,
+          "target_price": 213720,
+          "stop_price": 197280
+        },
+        {
+          "name": "DB하이텍",
+          "ticker": "000990.KS",
+          "entry_price": 165800,
+          "target_price": 172432,
+          "stop_price": 159168
         }
       ]
     }
