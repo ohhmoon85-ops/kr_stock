@@ -1,46 +1,6 @@
 {
   "history": [
     {
-      "date": "2026-05-13",
-      "picks": [
-        {
-          "name": "크래프톤",
-          "ticker": "259960.KS",
-          "entry_price": 281000,
-          "target_price": 295000,
-          "stop_price": 267000
-        },
-        {
-          "name": "기아",
-          "ticker": "000270.KS",
-          "entry_price": 179500,
-          "target_price": 188500,
-          "stop_price": 170500
-        },
-        {
-          "name": "HD현대중공업",
-          "ticker": "267250.KS",
-          "entry_price": 733000,
-          "target_price": 769000,
-          "stop_price": 696000
-        },
-        {
-          "name": "DB하이텍",
-          "ticker": "000990.KS",
-          "entry_price": 185600,
-          "target_price": 194900,
-          "stop_price": 176300
-        },
-        {
-          "name": "리노공업",
-          "ticker": "058470.KS",
-          "entry_price": 112300,
-          "target_price": 118900,
-          "stop_price": 105600
-        }
-      ]
-    },
-    {
       "date": "2026-05-14",
       "picks": [
         {
@@ -77,6 +37,46 @@
           "entry_price": 671000,
           "target_price": 690000,
           "stop_price": 655000
+        }
+      ]
+    },
+    {
+      "date": "2026-05-17",
+      "picks": [
+        {
+          "name": "기아",
+          "ticker": "000270.KS",
+          "entry_price": 168000,
+          "target_price": 176000,
+          "stop_price": 162000
+        },
+        {
+          "name": "크래프톤",
+          "ticker": "259960.KS",
+          "entry_price": 279000,
+          "target_price": 292000,
+          "stop_price": 270000
+        },
+        {
+          "name": "삼성전자",
+          "ticker": "005930.KS",
+          "entry_price": 270500,
+          "target_price": 283000,
+          "stop_price": 262000
+        },
+        {
+          "name": "현대모비스",
+          "ticker": "012330.KS",
+          "entry_price": 629000,
+          "target_price": 660000,
+          "stop_price": 615000
+        },
+        {
+          "name": "HD현대중공업",
+          "ticker": "267250.KS",
+          "entry_price": 640000,
+          "target_price": 668000,
+          "stop_price": 620000
         }
       ]
     }
