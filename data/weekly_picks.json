@@ -1,46 +1,6 @@
 {
   "history": [
     {
-      "date": "2026-05-14",
-      "picks": [
-        {
-          "name": "크래프톤",
-          "ticker": "259960.KS",
-          "entry_price": 293500,
-          "target_price": 305000,
-          "stop_price": 284000
-        },
-        {
-          "name": "기아",
-          "ticker": "000270.KS",
-          "entry_price": 178100,
-          "target_price": 185000,
-          "stop_price": 172000
-        },
-        {
-          "name": "하나금융지주",
-          "ticker": "086790.KS",
-          "entry_price": 126500,
-          "target_price": 132000,
-          "stop_price": 122000
-        },
-        {
-          "name": "NAVER",
-          "ticker": "035420.KS",
-          "entry_price": 213000,
-          "target_price": 220000,
-          "stop_price": 207000
-        },
-        {
-          "name": "HD현대중공업",
-          "ticker": "267250.KS",
-          "entry_price": 671000,
-          "target_price": 690000,
-          "stop_price": 655000
-        }
-      ]
-    },
-    {
       "date": "2026-05-17",
       "picks": [
         {
@@ -77,6 +37,46 @@
           "entry_price": 640000,
           "target_price": 668000,
           "stop_price": 620000
+        }
+      ]
+    },
+    {
+      "date": "2026-05-18",
+      "picks": [
+        {
+          "name": "삼성전자",
+          "ticker": "005930.KS",
+          "entry_price": 281000,
+          "target_price": 292000,
+          "stop_price": 272000
+        },
+        {
+          "name": "현대모비스",
+          "ticker": "012330.KS",
+          "entry_price": 571000,
+          "target_price": 593000,
+          "stop_price": 550000
+        },
+        {
+          "name": "DB하이텍",
+          "ticker": "000990.KS",
+          "entry_price": 170900,
+          "target_price": 178000,
+          "stop_price": 164000
+        },
+        {
+          "name": "크래프톤",
+          "ticker": "259960.KS",
+          "entry_price": 282000,
+          "target_price": 292000,
+          "stop_price": 272000
+        },
+        {
+          "name": "한화솔루션",
+          "ticker": "009830.KS",
+          "entry_price": 43350,
+          "target_price": 45000,
+          "stop_price": 41500
         }
       ]
     }
