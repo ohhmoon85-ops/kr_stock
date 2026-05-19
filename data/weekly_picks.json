@@ -1,46 +1,6 @@
 {
   "history": [
     {
-      "date": "2026-05-17",
-      "picks": [
-        {
-          "name": "기아",
-          "ticker": "000270.KS",
-          "entry_price": 168000,
-          "target_price": 176000,
-          "stop_price": 162000
-        },
-        {
-          "name": "크래프톤",
-          "ticker": "259960.KS",
-          "entry_price": 279000,
-          "target_price": 292000,
-          "stop_price": 270000
-        },
-        {
-          "name": "삼성전자",
-          "ticker": "005930.KS",
-          "entry_price": 270500,
-          "target_price": 283000,
-          "stop_price": 262000
-        },
-        {
-          "name": "현대모비스",
-          "ticker": "012330.KS",
-          "entry_price": 629000,
-          "target_price": 660000,
-          "stop_price": 615000
-        },
-        {
-          "name": "HD현대중공업",
-          "ticker": "267250.KS",
-          "entry_price": 640000,
-          "target_price": 668000,
-          "stop_price": 620000
-        }
-      ]
-    },
-    {
       "date": "2026-05-18",
       "picks": [
         {
@@ -77,6 +37,46 @@
           "entry_price": 43350,
           "target_price": 45000,
           "stop_price": 41500
+        }
+      ]
+    },
+    {
+      "date": "2026-05-19",
+      "picks": [
+        {
+          "name": "현대차",
+          "ticker": "005380.KS",
+          "entry_price": 604000,
+          "target_price": 624000,
+          "stop_price": 588000
+        },
+        {
+          "name": "현대모비스",
+          "ticker": "012330.KS",
+          "entry_price": 525000,
+          "target_price": 541000,
+          "stop_price": 510000
+        },
+        {
+          "name": "삼성전자",
+          "ticker": "005930.KS",
+          "entry_price": 275500,
+          "target_price": 284800,
+          "stop_price": 266000
+        },
+        {
+          "name": "DB하이텍",
+          "ticker": "000990.KS",
+          "entry_price": 157300,
+          "target_price": 162000,
+          "stop_price": 152500
+        },
+        {
+          "name": "크래프톤",
+          "ticker": "259960.KS",
+          "entry_price": 276000,
+          "target_price": 284300,
+          "stop_price": 267000
         }
       ]
     }
