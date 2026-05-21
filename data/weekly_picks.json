@@ -1,46 +1,6 @@
 {
   "history": [
     {
-      "date": "2026-05-19",
-      "picks": [
-        {
-          "name": "현대차",
-          "ticker": "005380.KS",
-          "entry_price": 604000,
-          "target_price": 624000,
-          "stop_price": 588000
-        },
-        {
-          "name": "현대모비스",
-          "ticker": "012330.KS",
-          "entry_price": 525000,
-          "target_price": 541000,
-          "stop_price": 510000
-        },
-        {
-          "name": "삼성전자",
-          "ticker": "005930.KS",
-          "entry_price": 275500,
-          "target_price": 284800,
-          "stop_price": 266000
-        },
-        {
-          "name": "DB하이텍",
-          "ticker": "000990.KS",
-          "entry_price": 157300,
-          "target_price": 162000,
-          "stop_price": 152500
-        },
-        {
-          "name": "크래프톤",
-          "ticker": "259960.KS",
-          "entry_price": 276000,
-          "target_price": 284300,
-          "stop_price": 267000
-        }
-      ]
-    },
-    {
       "date": "2026-05-20",
       "picks": [
         {
@@ -77,6 +37,46 @@
           "entry_price": 265500,
           "target_price": 275000,
           "stop_price": 257000
+        }
+      ]
+    },
+    {
+      "date": "2026-05-21",
+      "picks": [
+        {
+          "name": "현대차",
+          "ticker": "005380.KS",
+          "entry_price": 666000,
+          "target_price": 733000,
+          "stop_price": 633000
+        },
+        {
+          "name": "삼성전자",
+          "ticker": "005930.KS",
+          "entry_price": 299500,
+          "target_price": 314500,
+          "stop_price": 284500
+        },
+        {
+          "name": "DB하이텍",
+          "ticker": "000990.KS",
+          "entry_price": 181000,
+          "target_price": 199100,
+          "stop_price": 171950
+        },
+        {
+          "name": "리노공업",
+          "ticker": "058470.KS",
+          "entry_price": 104000,
+          "target_price": 112320,
+          "stop_price": 99680
+        },
+        {
+          "name": "에코프로비엠",
+          "ticker": "247540.KS",
+          "entry_price": 195000,
+          "target_price": 210600,
+          "stop_price": 185250
         }
       ]
     }
